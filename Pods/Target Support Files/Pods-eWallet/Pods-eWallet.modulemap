@@ -1,0 +1,6 @@
+framework module Pods_eWallet {
+  umbrella header "Pods-eWallet-umbrella.h"
+
+  export *
+  module * { export * }
+}
