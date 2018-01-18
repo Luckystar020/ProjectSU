@@ -18,6 +18,9 @@ class HistoryPayment: UIViewController, UITableViewDataSource, UITableViewDelega
     let paymentNumber = ["FFF","AAA","BBB"]
     let priceCell = [1234,111,555]
     
+    @IBAction func backBTN(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return paymentNumber.count
@@ -40,10 +43,6 @@ class HistoryPayment: UIViewController, UITableViewDataSource, UITableViewDelega
         historyPaymentTable.delegate = self
         historyPaymentTable.dataSource = self
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = false
     }
     
     

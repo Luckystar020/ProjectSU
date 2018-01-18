@@ -354,7 +354,7 @@
                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="History Payment"/>
                                 <connections>
-                                    <segue destination="mdI-Ha-Iyc" kind="presentation" id="QUM-Ft-mme"/>
+                                    <segue destination="mdI-Ha-Iyc" kind="presentation" id="fq8-w2-hD0"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bwv-NO-fLd">
@@ -458,7 +458,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan for Pay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arn-z5-hA1">
-                                        <rect key="frame" x="134" y="60" width="107" height="25"/>
+                                        <rect key="frame" x="134" y="60" width="107" height="26"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="18"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -472,16 +472,22 @@
                                         <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Cancle"/>
                                         <connections>
-                                            <action selector="cancleButton:" destination="9MD-aN-cRF" eventType="touchUpInside" id="kdL-rT-D9i"/>
-                                            <action selector="nonScan:" destination="omA-U7-LsG" eventType="touchUpInside" id="xNH-5c-zXK"/>
+                                            <action selector="cancleBTN:" destination="omA-U7-LsG" eventType="touchUpInside" id="FSn-HL-No5"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IzG-8q-DvT">
-                                        <rect key="frame" x="62" y="208" width="250" height="250"/>
+                                        <rect key="frame" x="0.0" y="149" width="375" height="414"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SaJ-gv-8tH">
+                                                <rect key="frame" x="62" y="82" width="250" height="250"/>
+                                            </imageView>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="250" id="PD6-gd-Vpv"/>
-                                            <constraint firstAttribute="width" constant="250" id="Rzm-aI-TL0"/>
+                                            <constraint firstItem="SaJ-gv-8tH" firstAttribute="top" secondItem="IzG-8q-DvT" secondAttribute="top" constant="82" id="GsK-18-aN7"/>
+                                            <constraint firstAttribute="bottom" secondItem="SaJ-gv-8tH" secondAttribute="bottom" constant="82" id="T6W-a0-NHI"/>
+                                            <constraint firstItem="SaJ-gv-8tH" firstAttribute="leading" secondItem="IzG-8q-DvT" secondAttribute="leading" constant="62" id="dAo-di-ebE"/>
+                                            <constraint firstAttribute="trailing" secondItem="SaJ-gv-8tH" secondAttribute="trailing" constant="63" id="orY-Ks-oQS"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -489,13 +495,17 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="arn-z5-hA1" secondAttribute="trailing" constant="134" id="39T-pK-K02"/>
                                     <constraint firstItem="arn-z5-hA1" firstAttribute="leading" secondItem="Ffv-SN-e89" secondAttribute="leading" constant="134" id="9Nt-DB-0t7"/>
+                                    <constraint firstItem="IzG-8q-DvT" firstAttribute="leading" secondItem="Ffv-SN-e89" secondAttribute="leading" id="9WW-iU-Ly1"/>
+                                    <constraint firstItem="IzG-8q-DvT" firstAttribute="centerX" secondItem="arn-z5-hA1" secondAttribute="centerX" id="DeF-yZ-VOU"/>
+                                    <constraint firstItem="IzG-8q-DvT" firstAttribute="centerX" secondItem="Ffv-SN-e89" secondAttribute="centerX" id="Jco-oh-OJB"/>
                                     <constraint firstItem="arn-z5-hA1" firstAttribute="centerX" secondItem="Ffv-SN-e89" secondAttribute="centerX" id="PDA-wu-PgT"/>
-                                    <constraint firstItem="IzG-8q-DvT" firstAttribute="centerX" secondItem="Ffv-SN-e89" secondAttribute="centerX" id="QMb-dE-AsZ"/>
-                                    <constraint firstItem="IzG-8q-DvT" firstAttribute="centerY" secondItem="Ffv-SN-e89" secondAttribute="centerY" id="btC-L0-nmz"/>
+                                    <constraint firstAttribute="bottom" secondItem="IzG-8q-DvT" secondAttribute="bottom" constant="104" id="a5m-1F-6rD"/>
+                                    <constraint firstItem="IzG-8q-DvT" firstAttribute="top" secondItem="Ffv-SN-e89" secondAttribute="top" constant="149" id="cLa-SF-zRT"/>
                                     <constraint firstItem="JaG-u7-mOG" firstAttribute="top" secondItem="Ffv-SN-e89" secondAttribute="topMargin" id="fEx-tT-lfI"/>
                                     <constraint firstItem="arn-z5-hA1" firstAttribute="top" secondItem="Ffv-SN-e89" secondAttribute="top" constant="60" id="gG8-nl-MTx"/>
-                                    <constraint firstItem="IzG-8q-DvT" firstAttribute="top" secondItem="arn-z5-hA1" secondAttribute="bottom" constant="123" id="gvc-ig-9HO"/>
                                     <constraint firstItem="JaG-u7-mOG" firstAttribute="leading" secondItem="Ffv-SN-e89" secondAttribute="leadingMargin" id="tHW-Kd-fkV"/>
+                                    <constraint firstItem="IzG-8q-DvT" firstAttribute="top" secondItem="arn-z5-hA1" secondAttribute="bottom" constant="63" id="uIU-D2-oLy"/>
+                                    <constraint firstAttribute="trailing" secondItem="IzG-8q-DvT" secondAttribute="trailing" id="xPk-3B-Pid"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -510,13 +520,13 @@
                     </view>
                     <connections>
                         <outlet property="qrCodeFrameView" destination="IzG-8q-DvT" id="pyJ-DY-S0j"/>
+                        <outlet property="square" destination="SaJ-gv-8tH" id="a2V-eO-umw"/>
                         <segue destination="8c6-X0-ggQ" kind="push" identifier="sendPage" id="fjQ-2M-KxQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NJn-M5-hNK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="9MD-aN-cRF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1220" y="814"/>
+            <point key="canvasLocation" x="1220" y="813.64317841079469"/>
         </scene>
         <!--Payment Detail Controller-->
         <scene sceneID="Q37-eh-JwY">
@@ -671,7 +681,7 @@
         <!--History Payment-->
         <scene sceneID="rd3-jY-kgR">
             <objects>
-                <viewController storyboardIdentifier="HistoryPayment" title="History Payment" id="mdI-Ha-Iyc" customClass="HistoryPayment" customModule="eWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HistoryPayment" title="History Payment" id="mdI-Ha-Iyc" customClass="HistoryPaymentController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jbl-AF-6hY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -735,12 +745,27 @@
                                     <constraint firstItem="nic-ud-Vhf" firstAttribute="centerY" secondItem="e3O-bq-69h" secondAttribute="centerY" id="rdU-CN-5Cw"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZG-hq-EgM">
+                                <rect key="frame" x="16" y="20" width="75" height="37"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.97636479139999999" green="0.97653168440000004" blue="0.9763541818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="backBTN:" destination="mdI-Ha-Iyc" eventType="touchUpInside" id="zJw-ft-faC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="nJf-tN-CbJ" firstAttribute="top" secondItem="kZG-hq-EgM" secondAttribute="bottom" constant="16" id="Ize-zi-u7a"/>
                             <constraint firstItem="e3O-bq-69h" firstAttribute="top" secondItem="9vi-8O-TkE" secondAttribute="top" constant="53" id="b9P-oW-Wof"/>
                             <constraint firstItem="e3O-bq-69h" firstAttribute="leading" secondItem="jbl-AF-6hY" secondAttribute="leadingMargin" constant="-16" id="e2g-Qv-Whk"/>
+                            <constraint firstItem="kZG-hq-EgM" firstAttribute="top" secondItem="9vi-8O-TkE" secondAttribute="top" id="iAY-jV-QfO"/>
                             <constraint firstItem="9vi-8O-TkE" firstAttribute="bottom" secondItem="e3O-bq-69h" secondAttribute="bottom" id="ind-o0-yzs"/>
+                            <constraint firstItem="9vi-8O-TkE" firstAttribute="trailing" secondItem="kZG-hq-EgM" secondAttribute="trailing" constant="284" id="oCs-HZ-q3d"/>
+                            <constraint firstItem="kZG-hq-EgM" firstAttribute="leading" secondItem="9vi-8O-TkE" secondAttribute="leading" constant="16" id="ofq-Pn-FuX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="e3O-bq-69h" secondAttribute="trailing" constant="-16" id="ub9-gA-oUQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9vi-8O-TkE"/>
@@ -754,7 +779,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nAz-yB-bMs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2002" y="32"/>
+            <point key="canvasLocation" x="2000.8" y="31.934032983508249"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="DgU-xU-VmY">
@@ -769,7 +794,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xMm-kE-WeW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2786" y="32"/>
+            <point key="canvasLocation" x="2815" y="814"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gQ5-wc-EwO">
