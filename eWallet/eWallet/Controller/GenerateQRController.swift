@@ -27,6 +27,9 @@ class GenerateQRController: UIViewController {
         
 //        print("This UID is : \(self.UID)")
     }
+    @IBAction func cancleButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
 //    func queryData(uid:String) -> String {
 //        db.collection("wallet").getDocuments(){ (querySnapshot, err) in
@@ -41,6 +44,9 @@ class GenerateQRController: UIViewController {
 //    }
 //        return
 //}
+    @IBAction func closeButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
    //Generate QRCode and Change UIImage
     @IBAction func changeUIImage(_ sender: Any) {

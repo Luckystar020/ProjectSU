@@ -334,7 +334,7 @@
                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Pay"/>
                                 <connections>
-                                    <segue destination="8c6-X0-ggQ" kind="presentation" id="q5v-HO-rfX"/>
+                                    <segue destination="omA-U7-LsG" kind="presentation" id="8PV-8j-p5B"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="944-cC-OZx">
@@ -343,6 +343,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Topup"/>
+                                <connections>
+                                    <segue destination="bM8-pi-5vc" kind="presentation" id="XvO-ij-OHX"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="smO-ch-Ipq">
                                 <rect key="frame" x="16" y="391.5" width="170" height="65"/>
@@ -441,7 +444,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QeB-yp-d79" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1326" y="32"/>
+            <point key="canvasLocation" x="1220" y="32"/>
         </scene>
         <!--Payment Controller-->
         <scene sceneID="8GX-0h-bkP">
@@ -467,7 +470,11 @@
                                             <constraint firstAttribute="width" constant="79" id="LwE-go-RhI"/>
                                         </constraints>
                                         <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Back"/>
+                                        <state key="normal" title="Cancle"/>
+                                        <connections>
+                                            <action selector="cancleButton:" destination="9MD-aN-cRF" eventType="touchUpInside" id="kdL-rT-D9i"/>
+                                            <action selector="nonScan:" destination="omA-U7-LsG" eventType="touchUpInside" id="xNH-5c-zXK"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IzG-8q-DvT">
                                         <rect key="frame" x="62" y="208" width="250" height="250"/>
@@ -501,15 +508,20 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="B3w-i4-9Xr"/>
                     </view>
+                    <connections>
+                        <outlet property="qrCodeFrameView" destination="IzG-8q-DvT" id="pyJ-DY-S0j"/>
+                        <segue destination="8c6-X0-ggQ" kind="push" identifier="sendPage" id="fjQ-2M-KxQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NJn-M5-hNK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="9MD-aN-cRF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1326" y="1626"/>
+            <point key="canvasLocation" x="1220" y="814"/>
         </scene>
-        <!--View Controller-->
+        <!--Payment Detail Controller-->
         <scene sceneID="Q37-eh-JwY">
             <objects>
-                <viewController id="8c6-X0-ggQ" sceneMemberID="viewController">
+                <viewController id="8c6-X0-ggQ" customClass="PaymentDetailController" customModule="eWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VRx-tN-Efw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -524,17 +536,14 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zAA-EX-qKm">
-                                <rect key="frame" x="32" y="135" width="311" height="40"/>
+                                <rect key="frame" x="32" y="135" width="311" height="48"/>
                                 <color key="backgroundColor" red="0.5383611237" green="0.3179530062" blue="0.073982678730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="zgL-1V-TLZ"/>
+                                    <constraint firstAttribute="height" constant="48" id="zgL-1V-TLZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Next"/>
-                                <connections>
-                                    <segue destination="omA-U7-LsG" kind="presentation" id="EOv-cp-bNd"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.65065521000000004" green="0.384237051" blue="0.086337231099999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -542,17 +551,18 @@
                             <constraint firstItem="cBH-n5-JF2" firstAttribute="leading" secondItem="6Js-Xg-Y70" secondAttribute="leading" constant="16" id="6sg-Nj-TPP"/>
                             <constraint firstItem="6Js-Xg-Y70" firstAttribute="trailing" secondItem="cBH-n5-JF2" secondAttribute="trailing" constant="16" id="9kz-hZ-twh"/>
                             <constraint firstItem="zAA-EX-qKm" firstAttribute="top" secondItem="cBH-n5-JF2" secondAttribute="bottom" constant="30" id="WNc-1E-rRG"/>
-                            <constraint firstItem="6Js-Xg-Y70" firstAttribute="bottom" secondItem="zAA-EX-qKm" secondAttribute="bottom" constant="492" id="btS-a8-c9c"/>
+                            <constraint firstItem="6Js-Xg-Y70" firstAttribute="bottom" secondItem="zAA-EX-qKm" secondAttribute="bottom" constant="484" id="btS-a8-c9c"/>
                             <constraint firstItem="cBH-n5-JF2" firstAttribute="top" secondItem="6Js-Xg-Y70" secondAttribute="top" constant="45" id="fii-6X-jLn"/>
                             <constraint firstItem="zAA-EX-qKm" firstAttribute="leading" secondItem="6Js-Xg-Y70" secondAttribute="leading" constant="32" id="jYs-HX-4WR"/>
                             <constraint firstItem="6Js-Xg-Y70" firstAttribute="trailing" secondItem="zAA-EX-qKm" secondAttribute="trailing" constant="32" id="nzb-Vb-Ix8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Js-Xg-Y70"/>
                     </view>
+                    <navigationItem key="navigationItem" id="sgW-Yq-qLF"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="405-Tr-567" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1326" y="814"/>
+            <point key="canvasLocation" x="1220" y="1509"/>
         </scene>
         <!--GenerateQR Controller-->
         <scene sceneID="K3k-Ow-VzP">
@@ -592,7 +602,10 @@
                                             <constraint firstAttribute="width" constant="79" id="n4C-Xr-UOs"/>
                                         </constraints>
                                         <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Back"/>
+                                        <state key="normal" title="Cancle"/>
+                                        <connections>
+                                            <action selector="closeButton:" destination="bM8-pi-5vc" eventType="touchUpInside" id="TD5-Vn-TKH"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JG7-Xv-l8F">
                                         <rect key="frame" x="87" y="233" width="200" height="200"/>
@@ -653,27 +666,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ekg-Ji-3jZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2080.8000000000002" y="801.94902548725645"/>
+            <point key="canvasLocation" x="2001" y="814"/>
         </scene>
-        <!--Payment Controller-->
-        <scene sceneID="tU0-iJ-4WX">
-            <objects>
-                <viewController id="Q9w-jk-Gp2" customClass="PaymentController" customModule="eWallet" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Zx8-qg-1Pu">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="KqL-YT-41g"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="X0e-cg-hAX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2913" y="802"/>
-        </scene>
-        <!--ack-->
+        <!--History Payment-->
         <scene sceneID="rd3-jY-kgR">
             <objects>
-                <viewController storyboardIdentifier="HistoryPayment" title="ack" id="mdI-Ha-Iyc" customClass="HistoryPayment" customModule="eWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HistoryPayment" title="History Payment" id="mdI-Ha-Iyc" customClass="HistoryPayment" customModule="eWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jbl-AF-6hY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -756,7 +754,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nAz-yB-bMs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2081" y="32"/>
+            <point key="canvasLocation" x="2002" y="32"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="DgU-xU-VmY">
+            <objects>
+                <viewController id="Pbs-pZ-cK5" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sMF-VV-sCg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="NRr-oA-LO1"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xMm-kE-WeW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2786" y="32"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gQ5-wc-EwO">

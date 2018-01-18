@@ -13,6 +13,7 @@
 		7961C7912009505200AB93A6 /* PaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7961C7902009505200AB93A6 /* PaymentController.swift */; };
 		7982AA241FDD3BD800BD2078 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7982AA231FDD3BD800BD2078 /* Assets.xcassets */; };
 		7982AA261FE2813700BD2078 /* HistoryPaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7982AA251FE2813700BD2078 /* HistoryPaymentController.swift */; };
+		79A600AE2010943900607C66 /* PaymentDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A600AD2010943900607C66 /* PaymentDetailController.swift */; };
 		79C58DF51FCAD64A00CB5C4B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79C58DF41FCAD64A00CB5C4B /* GoogleService-Info.plist */; };
 		79C58DF71FCAEA4400CB5C4B /* MainPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C58DF61FCAEA4400CB5C4B /* MainPageController.swift */; };
 		79F0FA551FCAD08A00EDF1AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F0FA541FCAD08A00EDF1AE /* AppDelegate.swift */; };
@@ -51,6 +52,7 @@
 		7961C7902009505200AB93A6 /* PaymentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentController.swift; sourceTree = "<group>"; };
 		7982AA231FDD3BD800BD2078 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = eWallet/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		7982AA251FE2813700BD2078 /* HistoryPaymentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPaymentController.swift; sourceTree = "<group>"; };
+		79A600AD2010943900607C66 /* PaymentDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailController.swift; sourceTree = "<group>"; };
 		79C58DF41FCAD64A00CB5C4B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		79C58DF61FCAEA4400CB5C4B /* MainPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageController.swift; sourceTree = "<group>"; };
 		79F0FA511FCAD08A00EDF1AE /* eWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +122,7 @@
 				7982AA251FE2813700BD2078 /* HistoryPaymentController.swift */,
 				79F18E8C20078C310091530A /* GenerateQRController.swift */,
 				7961C7902009505200AB93A6 /* PaymentController.swift */,
+				79A600AD2010943900607C66 /* PaymentDetailController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				7982AA261FE2813700BD2078 /* HistoryPaymentController.swift in Sources */,
 				7961C7912009505200AB93A6 /* PaymentController.swift in Sources */,
 				79F0FA571FCAD08A00EDF1AE /* LoginPageController.swift in Sources */,
+				79A600AE2010943900607C66 /* PaymentDetailController.swift in Sources */,
 				79C58DF71FCAEA4400CB5C4B /* MainPageController.swift in Sources */,
 				79F0FA551FCAD08A00EDF1AE /* AppDelegate.swift in Sources */,
 			);
