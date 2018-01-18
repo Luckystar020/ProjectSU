@@ -477,18 +477,7 @@
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IzG-8q-DvT">
                                         <rect key="frame" x="0.0" y="149" width="375" height="414"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SaJ-gv-8tH">
-                                                <rect key="frame" x="62" y="82" width="250" height="250"/>
-                                            </imageView>
-                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="SaJ-gv-8tH" firstAttribute="top" secondItem="IzG-8q-DvT" secondAttribute="top" constant="82" id="GsK-18-aN7"/>
-                                            <constraint firstAttribute="bottom" secondItem="SaJ-gv-8tH" secondAttribute="bottom" constant="82" id="T6W-a0-NHI"/>
-                                            <constraint firstItem="SaJ-gv-8tH" firstAttribute="leading" secondItem="IzG-8q-DvT" secondAttribute="leading" constant="62" id="dAo-di-ebE"/>
-                                            <constraint firstAttribute="trailing" secondItem="SaJ-gv-8tH" secondAttribute="trailing" constant="63" id="orY-Ks-oQS"/>
-                                        </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.65065521000000004" green="0.384237051" blue="0.086337231099999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -520,13 +509,12 @@
                     </view>
                     <connections>
                         <outlet property="qrCodeFrameView" destination="IzG-8q-DvT" id="pyJ-DY-S0j"/>
-                        <outlet property="square" destination="SaJ-gv-8tH" id="a2V-eO-umw"/>
-                        <segue destination="8c6-X0-ggQ" kind="push" identifier="sendPage" id="fjQ-2M-KxQ"/>
+                        <segue destination="8c6-X0-ggQ" kind="modal" identifier="sendPage" id="fjQ-2M-KxQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NJn-M5-hNK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1220" y="813.64317841079469"/>
+            <point key="canvasLocation" x="1220" y="873"/>
         </scene>
         <!--Payment Detail Controller-->
         <scene sceneID="Q37-eh-JwY">
@@ -572,7 +560,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="405-Tr-567" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1220" y="1509"/>
+            <point key="canvasLocation" x="1220" y="1705"/>
         </scene>
         <!--GenerateQR Controller-->
         <scene sceneID="K3k-Ow-VzP">
@@ -609,7 +597,7 @@
                                         <rect key="frame" x="8" y="28" width="79" height="30"/>
                                         <color key="backgroundColor" red="0.5383611237" green="0.3179530062" blue="0.073982678730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="79" id="n4C-Xr-UOs"/>
+                                            <constraint firstAttribute="width" constant="79" id="lOb-3w-hcf"/>
                                         </constraints>
                                         <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Cancle"/>
@@ -645,17 +633,17 @@
                                 <color key="backgroundColor" red="0.65065521000000004" green="0.384237051" blue="0.086337231099999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="0tb-GQ-sXq" secondAttribute="trailing" constant="126" id="8qK-d8-2gf"/>
-                                    <constraint firstItem="BnH-if-lgH" firstAttribute="leading" secondItem="V1a-YJ-hXf" secondAttribute="leadingMargin" id="CWm-8a-ttq"/>
+                                    <constraint firstItem="BnH-if-lgH" firstAttribute="top" secondItem="V1a-YJ-hXf" secondAttribute="topMargin" id="DwK-KU-fh4"/>
                                     <constraint firstItem="0tb-GQ-sXq" firstAttribute="leading" secondItem="V1a-YJ-hXf" secondAttribute="leading" constant="125" id="I1n-DJ-bd5"/>
                                     <constraint firstItem="JG7-Xv-l8F" firstAttribute="centerX" secondItem="V1a-YJ-hXf" secondAttribute="centerX" constant="-0.5" id="IVa-XK-61B"/>
                                     <constraint firstItem="0tb-GQ-sXq" firstAttribute="top" secondItem="V1a-YJ-hXf" secondAttribute="top" constant="64" id="J7U-RB-RRe"/>
                                     <constraint firstAttribute="trailing" secondItem="qa3-es-DUZ" secondAttribute="trailing" constant="38" id="O0M-ce-Pfd"/>
+                                    <constraint firstItem="BnH-if-lgH" firstAttribute="leading" secondItem="V1a-YJ-hXf" secondAttribute="leadingMargin" id="U3m-6d-MoT"/>
                                     <constraint firstItem="JG7-Xv-l8F" firstAttribute="centerY" secondItem="V1a-YJ-hXf" secondAttribute="centerY" constant="-0.5" id="Zu7-mC-Ywq"/>
                                     <constraint firstAttribute="trailing" secondItem="JG7-Xv-l8F" secondAttribute="trailing" constant="88" id="cpB-Hl-NRG"/>
                                     <constraint firstItem="JG7-Xv-l8F" firstAttribute="top" secondItem="0tb-GQ-sXq" secondAttribute="bottom" constant="144" id="o75-aA-IDl"/>
                                     <constraint firstAttribute="bottom" secondItem="qa3-es-DUZ" secondAttribute="bottom" constant="28" id="r9Q-OS-8gT"/>
                                     <constraint firstItem="qa3-es-DUZ" firstAttribute="leading" secondItem="V1a-YJ-hXf" secondAttribute="leading" constant="38" id="ssZ-Dr-u1Q"/>
-                                    <constraint firstItem="BnH-if-lgH" firstAttribute="top" secondItem="V1a-YJ-hXf" secondAttribute="topMargin" id="tcZ-cy-MoU"/>
                                     <constraint firstItem="JG7-Xv-l8F" firstAttribute="leading" secondItem="V1a-YJ-hXf" secondAttribute="leading" constant="87" id="uhr-f0-dTZ"/>
                                 </constraints>
                             </view>

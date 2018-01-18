@@ -15,7 +15,7 @@ class PaymentDetailController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("Hello \(WID)")
         // Do any additional setup after loading the view.
     }
 
