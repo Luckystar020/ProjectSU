@@ -9,6 +9,7 @@ target 'eWallet' do
   pod 'Firebase/Database'
   pod 'Firebase/Firestore'
   pod 'IQKeyboardManagerSwift'
+  pod 'NVActivityIndicatorView'
 
   # Pods for eWallet
 

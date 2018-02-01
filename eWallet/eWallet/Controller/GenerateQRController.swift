@@ -19,7 +19,7 @@ class GenerateQRController: UIViewController {
     var UID: String = ""
     var db = Firestore.firestore()
     
-    var wid = "Hello World!"
+    var wid = "3T73rGZF0ZftnKQpmchQ"
     
     override func viewDidLoad() {
         super.viewDidLoad()
