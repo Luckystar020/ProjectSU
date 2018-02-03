@@ -24,6 +24,7 @@
 		79F0FA6A1FCAD08A00EDF1AE /* eWalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F0FA691FCAD08A00EDF1AE /* eWalletTests.swift */; };
 		79F0FA751FCAD08A00EDF1AE /* eWalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F0FA741FCAD08A00EDF1AE /* eWalletUITests.swift */; };
 		79F18E8D20078C310091530A /* GenerateQRController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F18E8C20078C310091530A /* GenerateQRController.swift */; };
+		79F3101120230E0E0084E3A4 /* DataFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F3101020230E0E0084E3A4 /* DataFile.swift */; };
 		A605282D707DDD044B16E1BC /* Pods_eWalletUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA081CB31FDEE7E5FDC53C4 /* Pods_eWalletUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		79F0FA741FCAD08A00EDF1AE /* eWalletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = eWalletUITests.swift; sourceTree = "<group>"; };
 		79F0FA761FCAD08A00EDF1AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79F18E8C20078C310091530A /* GenerateQRController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateQRController.swift; sourceTree = "<group>"; };
+		79F3101020230E0E0084E3A4 /* DataFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFile.swift; sourceTree = "<group>"; };
 		7DA081CB31FDEE7E5FDC53C4 /* Pods_eWalletUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eWalletUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3BB8E22AEBD25EAD0433967 /* Pods-eWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-eWallet/Pods-eWallet.debug.xcconfig"; sourceTree = "<group>"; };
 		AE5346AD8F8E93C8F60D0F22 /* Pods-eWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eWallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-eWallet/Pods-eWallet.release.xcconfig"; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				7961C7902009505200AB93A6 /* PaymentController.swift */,
 				79A600AD2010943900607C66 /* PaymentDetailController.swift */,
 				7944DD342012BD55005BBA29 /* PromotionController.swift */,
+				79F3101020230E0E0084E3A4 /* DataFile.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				79A600AE2010943900607C66 /* PaymentDetailController.swift in Sources */,
 				79C58DF71FCAEA4400CB5C4B /* MainPageController.swift in Sources */,
 				79F0FA551FCAD08A00EDF1AE /* AppDelegate.swift in Sources */,
+				79F3101120230E0E0084E3A4 /* DataFile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,10 +14,10 @@ import FirebaseAuth
 
 class RegisterController: UIViewController {
     
-    let db = Firestore.firestore()
+//    let db = Firestore.firestore()
     let datePicker = UIDatePicker()
     let dateFormatter = DateFormatter()
-    
+    let aDataFile = DataFile()
     var UID : String = ""
     
     @IBOutlet weak var fullnameTextField: UITextField!
@@ -27,9 +27,6 @@ class RegisterController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var repasswordTextField: UITextField!
-    
- 
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,25 +82,6 @@ class RegisterController: UIViewController {
         view.endEditing(true)
     }
     
-    //Function Check validate email
-    func isValidEmail(testStr:String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluate(with: testStr)
-    }
-    
-    func createWallet(UID:String,Name:String) {
-        let Amount = 0.0
-        let RewardPoint = 0
-        self.db.collection("wallet").addDocument(data: [
-            "Price":Amount,
-            "RewardPoint":RewardPoint,
-            "UID":UID
-            ])
-        
-    }
-    
     
 
     @IBAction func registerTapped(_ sender: Any) {
@@ -111,63 +89,18 @@ class RegisterController: UIViewController {
        
         
         if let fullname = fullnameTextField.text , let birthdate = birthdateTextField.text , let phone = phoneTextField.text , let personal = personidTextField.text , let email = emailTextField.text , let password = passwordTextField.text , let repass = repasswordTextField.text{
-            if self.isValidEmail(testStr: email) == true{
-            if password == repass{
-                //Create User
-            Auth.auth().createUser(withEmail: email, password: password, completion: { (user,error ) in
-                if let firebaseError = error{
-                    print(firebaseError.localizedDescription)
-                    return
-                }//if Error
-                
-                self.UID = user?.uid as! String
-                //Add Info User to Database
-                    self.db.collection("user").document(self.UID).setData([
-                    "Fullname" : fullname,
-                    "Birthdate" : birthdate,
-                    "Phone" : phone,
-                    "Personal" : personal,
-                    "Email" : email]) {(err) in
-                    if let err = err {
-                        print("Error adding document: \(err)")
-                    } else{
-//                        print("Document add with ID: \(self.UID)")
-                        self.createWallet(UID: self.UID, Name: fullname)
-                                }
-                    }//END Push infomation to Clound Firestore
-                
-                Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
-                    if let firebaseError = error{print(firebaseError.localizedDescription)
-                        //Check Error
-                        return
-                    }
-                    self.gotoMainPage()
-                    print("Success!")
-                })
-            })//END Register
-                
-               
-//                navigationController?.popViewController(animated: true)
-//                dismiss(animated: true, completion: nil)
-                
-            }//END Check password
-        }//END Check func isValidEmail
-                
-                
-            else{
+
+            if aDataFile.isValidEmail(testStr: email) == true{
+            aDataFile.Register(name: fullname, birth: birthdate, phone: phone, personalID: personal, email: email, password: password, re_pass: repass, shop: "")
+            } else{
                 // create the alert
                 let Alert = UIAlertController(title: "Something Wrong!", message: "Email is invalid!", preferredStyle: UIAlertControllerStyle.alert)
-                
-                // add an action (button)
+
                 Alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                
-                // show the alert
+
                 self.present(Alert, animated: true, completion: nil)
             }//else Email invalid Alert
-            
         }//END if let
-       
-    
     }//Button Register
     
     func gotoMainPage(){
