@@ -89,7 +89,7 @@ class PaymentController: UIViewController, AVCaptureMetadataOutputObjectsDelegat
             if metadataObj.stringValue != nil{
                 self.WID = metadataObj.stringValue!
                 self.performSegue(withIdentifier: "sendPage", sender: self)
-                print("RRRRRRRRRRRRRRR \(self.WID)")
+//                print("RRRRRRRRRRRRRRR \(self.WID)")
                 captureSession.stopRunning()
             }
         }

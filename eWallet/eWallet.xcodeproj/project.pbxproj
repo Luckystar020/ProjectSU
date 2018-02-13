@@ -11,12 +11,13 @@
 		6338510F0A56C1804430BB69 /* Pods_eWalletTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A3FD731D5FE515C42BD5DE /* Pods_eWalletTests.framework */; };
 		79247BB11FCE56C2003BCC58 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79247BB01FCE56C2003BCC58 /* RegisterController.swift */; };
 		7944DD352012BD55005BBA29 /* PromotionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7944DD342012BD55005BBA29 /* PromotionController.swift */; };
+		795AC1052027D7FC001FEF1E /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AC1042027D7FC001FEF1E /* ProfileController.swift */; };
 		7961C7912009505200AB93A6 /* PaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7961C7902009505200AB93A6 /* PaymentController.swift */; };
 		7982AA241FDD3BD800BD2078 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7982AA231FDD3BD800BD2078 /* Assets.xcassets */; };
 		7982AA261FE2813700BD2078 /* HistoryPaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7982AA251FE2813700BD2078 /* HistoryPaymentController.swift */; };
 		79A600AE2010943900607C66 /* PaymentDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A600AD2010943900607C66 /* PaymentDetailController.swift */; };
-		79C58DF51FCAD64A00CB5C4B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79C58DF41FCAD64A00CB5C4B /* GoogleService-Info.plist */; };
 		79C58DF71FCAEA4400CB5C4B /* MainPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C58DF61FCAEA4400CB5C4B /* MainPageController.swift */; };
+		79E21DA72025951C00A396F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79E21DA62025951C00A396F6 /* GoogleService-Info.plist */; };
 		79F0FA551FCAD08A00EDF1AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F0FA541FCAD08A00EDF1AE /* AppDelegate.swift */; };
 		79F0FA571FCAD08A00EDF1AE /* LoginPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F0FA561FCAD08A00EDF1AE /* LoginPageController.swift */; };
 		79F0FA5A1FCAD08A00EDF1AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79F0FA581FCAD08A00EDF1AE /* Main.storyboard */; };
@@ -52,12 +53,13 @@
 		5A4A18E3B6113E6B90096CF5 /* Pods-eWalletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eWalletTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-eWalletTests/Pods-eWalletTests.debug.xcconfig"; sourceTree = "<group>"; };
 		79247BB01FCE56C2003BCC58 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		7944DD342012BD55005BBA29 /* PromotionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionController.swift; sourceTree = "<group>"; };
+		795AC1042027D7FC001FEF1E /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		7961C7902009505200AB93A6 /* PaymentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentController.swift; sourceTree = "<group>"; };
 		7982AA231FDD3BD800BD2078 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = eWallet/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		7982AA251FE2813700BD2078 /* HistoryPaymentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPaymentController.swift; sourceTree = "<group>"; };
 		79A600AD2010943900607C66 /* PaymentDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailController.swift; sourceTree = "<group>"; };
-		79C58DF41FCAD64A00CB5C4B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		79C58DF61FCAEA4400CB5C4B /* MainPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageController.swift; sourceTree = "<group>"; };
+		79E21DA62025951C00A396F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		79F0FA511FCAD08A00EDF1AE /* eWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79F0FA541FCAD08A00EDF1AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79F0FA561FCAD08A00EDF1AE /* LoginPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageController.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				79A600AD2010943900607C66 /* PaymentDetailController.swift */,
 				7944DD342012BD55005BBA29 /* PromotionController.swift */,
 				79F3101020230E0E0084E3A4 /* DataFile.swift */,
+				795AC1042027D7FC001FEF1E /* ProfileController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -170,8 +173,8 @@
 				792729B01FCC81AF0064D95F /* Controller */,
 				79F0FA541FCAD08A00EDF1AE /* AppDelegate.swift */,
 				79C58DF31FCAD3CA00CB5C4B /* Storyboard */,
-				79C58DF41FCAD64A00CB5C4B /* GoogleService-Info.plist */,
 				7982AA231FDD3BD800BD2078 /* Assets.xcassets */,
+				79E21DA62025951C00A396F6 /* GoogleService-Info.plist */,
 				79F0FA601FCAD08A00EDF1AE /* Info.plist */,
 			);
 			path = eWallet;
@@ -325,7 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79F0FA5F1FCAD08A00EDF1AE /* LaunchScreen.storyboard in Resources */,
-				79C58DF51FCAD64A00CB5C4B /* GoogleService-Info.plist in Resources */,
+				79E21DA72025951C00A396F6 /* GoogleService-Info.plist in Resources */,
 				7982AA241FDD3BD800BD2078 /* Assets.xcassets in Resources */,
 				79F0FA5A1FCAD08A00EDF1AE /* Main.storyboard in Resources */,
 			);
@@ -531,6 +534,7 @@
 				7961C7912009505200AB93A6 /* PaymentController.swift in Sources */,
 				79F0FA571FCAD08A00EDF1AE /* LoginPageController.swift in Sources */,
 				79A600AE2010943900607C66 /* PaymentDetailController.swift in Sources */,
+				795AC1052027D7FC001FEF1E /* ProfileController.swift in Sources */,
 				79C58DF71FCAEA4400CB5C4B /* MainPageController.swift in Sources */,
 				79F0FA551FCAD08A00EDF1AE /* AppDelegate.swift in Sources */,
 				79F3101120230E0E0084E3A4 /* DataFile.swift in Sources */,

@@ -20,68 +20,35 @@ class MainPageController: UIViewController,UINavigationControllerDelegate,UIImag
     var db  = Firestore.firestore()
     var UID: String = ""
     var Fullname : String = ""
+    var WalletID : String = ""
     var Balance : Float = 0.0
-    
     let picker = UIImagePickerController()
-
+    var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     
-    
-    @IBAction func imageChanged(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
-            self.getCamera()
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
-            self.getLibrary()
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Edit Profile", style: .default, handler: {_ in
-            print("Edit Profile")
-        }))
-
-        
-        alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
-        
-        
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    func getCamera(){
-        picker.allowsEditing = false
-        picker.sourceType = .camera
-        picker.cameraCaptureMode = .photo
-        present(picker, animated: true, completion: nil)
-
-    }
-    
-    func getLibrary(){
-        picker.allowsEditing = false
-        picker.sourceType = .photoLibrary
-        present(picker, animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        ProfileImage.image = chosenImage
-        ProfileImage.contentMode = .scaleAspectFill
-        dismiss(animated: true, completion: nil)
-        
-    }
-    
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         picker.delegate = self
 //        sideView.layer.shadowColor = UIColor.black.cgColor
 //        sideView.layer.shadowOpacity = 0.8
 //        sideView.layer.shadowOffset = CGSize(width: 5, height: 0)
+        
+        if fieldNameLabel.text=="Name"&&fieldBalanceLabel.text=="Balance" {
+            activityIndicator.center = self.view.center
+            activityIndicator.hidesWhenStopped = true
+            activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+            activityIndicator.color = UIColor.black
+            view.addSubview(activityIndicator)
+            
+            activityIndicator.startAnimating()
+            UIApplication.shared.beginIgnoringInteractionEvents()
+            
+        }
+        
+        
+        
+        navigationController?.navigationBar.isHidden = false
         
         self.ProfileImage.layer.borderWidth = 2
         self.ProfileImage.layer.borderColor = UIColor.gray.cgColor
@@ -89,56 +56,136 @@ class MainPageController: UIViewController,UINavigationControllerDelegate,UIImag
         self.ProfileImage.layer.cornerRadius = ProfileImage.frame.height/2
         self.ProfileImage.clipsToBounds = true
         
+        let timestamp = NSDate()
+        print("TimeStamp : \(timestamp)")
+        
 //        print(self.UID)
         callData()
     }
     
-    @IBAction func promoBTN(_ sender: Any) {
-        performSegue(withIdentifier: "promotionSegue", sender: self)
+    
+    
+    @IBAction func TopupBtn(_ sender: Any) {
+        if self.WalletID == ""{
+            return
+        } else{
+            let generateQR:GenerateQRController = self.storyboard!.instantiateViewController(withIdentifier: "GenerateQRController") as! GenerateQRController
+            generateQR.WalletID = self.WalletID
+            self.present(generateQR, animated: true, completion: nil)
+            GenerateQRController().WalletID = self.WalletID
+        }
+        
     }
     
-    @IBAction func paymentHistoryBTN(_ sender: Any) {
-        performSegue(withIdentifier: "openHisPayment", sender: self)
-    }
+//    @IBAction func promoBTN(_ sender: Any) {
+//        let promotionPage:PromotionController = self.storyboard!.instantiateViewController(withIdentifier: "PromotionController") as! PromotionController
+//        self.present(promotionPage, animated: true, completion: nil)
+//    }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
-    }
+//    @IBAction func paymentHistoryBTN(_ sender: Any) {
+//        let historyPayment:HistoryPayment = self.storyboard!.instantiateViewController(withIdentifier: "HistoryPayment") as! HistoryPayment
+//        self.present(historyPayment, animated: true, completion: nil)
+//    }
     
+   
     //Get data from Display name and Balance
     func callData(){
         let data = db.collection("user").document(self.UID)
         let data2 = db.collection("wallet").whereField("UID", isEqualTo: self.UID)
         
+        //Get data from collection user
         data.getDocument { (document, error) in
             if let document = document {
-               self.fieldNameLabel.text = "Welcome : \(document.data()["Fullname"] as? String ?? "")"
+                self.fieldNameLabel.text = "Welcome : \(document.data()!["Fullname"] as? String ?? "")"
             }
         }
         
+        //Get data from collection wallet
         data2.getDocuments { (snapshot, error) in
             if let error = error{
                 print(error)
             } else{
-                
                 for document in (snapshot?.documents)!{
                 self.fieldBalanceLabel.text = "Balance : \(document.data()["Price"] as? Float ?? 0)  ฿"
-                    print("WID is in mainpage \(document.documentID)")
+                self.WalletID = document.documentID
+                    print(self.WalletID)
+                    self.activityIndicator.stopAnimating()
+                    UIApplication.shared.endIgnoringInteractionEvents()
                 }
             }
         }
-        
     }
     
+    /*BTN Logged out*/
     @IBAction func logoutTapped(_ sender: Any) {
+        let Alert = UIAlertController(title: "Log out", message: "Are you sure log out?", preferredStyle: UIAlertControllerStyle.alert)
+        Alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        Alert.addAction(UIAlertAction(title: "Sure", style: UIAlertActionStyle.default, handler: { _ in
+           self.log_out()
+        }))
+        self.present(Alert, animated: true, completion: nil)
+    }
+    /*****************/
+    
+    /*Function logged out from Firebase*/
+    func log_out() {
         do{
-           try Auth.auth().signOut()
+            try Auth.auth().signOut()
             dismiss(animated: true, completion: nil)
             
         } catch{
             print("Have Problem!")
         }
     }
+    
+    /*Function change image profile*/
+    @IBAction func imageChanged(_ sender: UIButton) {
+        let Alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
+        Alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
+            self.getCamera()
+        }))
+        
+        Alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
+            self.getLibrary()
+        }))
+        
+        Alert.addAction(UIAlertAction(title: "Edit Profile", style: .default, handler: { _ in
+            print("Edit Profile")
+            self.editProfile()
+        }))
+        
+        Alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(Alert, animated: true, completion: nil)
+    }
+    /*******BTN change profile******/
+    
+    /*Function option for change profile image*/
+    func getCamera(){
+        picker.allowsEditing = false
+        picker.sourceType = .camera
+        picker.cameraCaptureMode = .photo
+        present(picker, animated: true, completion: nil)
+    }
+    func getLibrary(){
+        picker.allowsEditing = false
+        picker.sourceType = .photoLibrary
+        present(picker, animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        ProfileImage.image = chosenImage
+        ProfileImage.contentMode = .scaleAspectFill
+        dismiss(animated: true, completion: nil)
+    }
+    func editProfile(){
+        let profileController : ProfileController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileController") as! ProfileController
+        self.present(profileController, animated: true, completion: nil)
+    }
+    /** END function option change profile**/
     
 }
 

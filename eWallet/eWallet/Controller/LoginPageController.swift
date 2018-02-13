@@ -19,12 +19,11 @@ class LoginPageController: UIViewController{
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        //hidden nav bar
+        navigationController?.navigationBar.isHidden = true
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        // hidden nav bar
-        self.navigationController?.navigationBar.isHidden = true
-    }
+
     
     override func viewDidAppear(_ animated: Bool) {
         //Condition Check was logged in auto to MainPage
@@ -34,8 +33,12 @@ class LoginPageController: UIViewController{
         }
     }
     
+//    @IBAction func createAccount(_ sender: Any) {
+//        self.performSegue(withIdentifier: "RegisterController", sender: nil)
+//    }
+    
     @IBAction func loginTapped(_ sender: Any) {
-        if let email = emailTextFeild.text, let password = passwordTextField.text{
+        if let email = emailTextFeild.text?.lowercased(), let password = passwordTextField.text{
             //Authen signIn with email
             Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
                 if let firebaseError = error{print(firebaseError.localizedDescription)

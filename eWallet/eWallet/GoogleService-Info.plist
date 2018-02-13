@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>332324062727-r75ctjnoal0ganaa98qtftrf2pbrmcum.apps.googleusercontent.com</string>
+	<string>332324062727-civ2d2d0tet2pmbo627fra841hb45pqv.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.332324062727-r75ctjnoal0ganaa98qtftrf2pbrmcum</string>
+	<string>com.googleusercontent.apps.332324062727-civ2d2d0tet2pmbo627fra841hb45pqv</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCdEJ42ojafLwD8G-0EEMCFfJ4mNP42GG8</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.suthesis-13570020</string>
+	<string>com.suthesis-13570020.eWallet</string>
 	<key>PROJECT_ID</key>
 	<string>thesis-su</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:332324062727:ios:58162c1c1118f45f</string>
+	<string>1:332324062727:ios:08aef679c5b5505b</string>
 	<key>DATABASE_URL</key>
 	<string>https://thesis-su.firebaseio.com</string>
 </dict>

@@ -18,8 +18,23 @@ class HistoryPayment: UIViewController, UITableViewDataSource, UITableViewDelega
     let paymentNumber = ["FFF","AAA","BBB"]
     let priceCell = [1234,111,555]
     
-    @IBAction func backBTN(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+        
+        // Do any additional setup after loading the view.
+        historyPaymentTable.delegate = self
+        historyPaymentTable.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //show custom nav bar
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+        navigationController?.navigationBar.barTintColor = UIColor(red:0.65, green:0.38, blue:0.09, alpha:1.0)
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -29,22 +44,10 @@ class HistoryPayment: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = historyPaymentTable.dequeueReusableCell(withIdentifier: "Payment")
         
-//        cell?.textLabel?.text = paymentNumber[indexPath.row]
-//        cell?.detailTextLabel?.text = ("\(priceCell[indexPath.row])")
+        //        cell?.textLabel?.text = paymentNumber[indexPath.row]
+        //        cell?.detailTextLabel?.text = ("\(priceCell[indexPath.row])")
         
         return cell!
     }
-    
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        historyPaymentTable.delegate = self
-        historyPaymentTable.dataSource = self
-        
-    }
-    
-    
     
 }

@@ -86,13 +86,13 @@ class PaymentDetailController: UIViewController {
 //        var UID : String = ""
         dataWallet.getDocument { (doc, err) in
             if let document = doc{
-                print(document.data()["Price"] as! Float)
-                print(document.data()["UID"] as! String)
-                self.tempMoney = document.data()["Price"] as! Float
-                let dataUser = self.db.collection("user").document(document.data()["UID"] as! String )
+                print(document.data()!["Price"] as! Float)
+                print(document.data()!["UID"] as! String)
+                self.tempMoney = document.data()!["Price"] as! Float
+                let dataUser = self.db.collection("user").document(document.data()!["UID"] as! String )
                 dataUser.getDocument(completion: { (doc, err) in
                     if let doc = doc{
-                        self.Name = doc.data()["Fullname"] as! String!
+                        self.Name = doc.data()!["Fullname"] as! String!
                     }
                 })
             }

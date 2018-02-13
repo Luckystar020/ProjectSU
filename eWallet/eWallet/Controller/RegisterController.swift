@@ -7,18 +7,17 @@
 //
 
 import UIKit
-import FirebaseDatabase
 import FirebaseFirestore
 import FirebaseAuth
 
 
 class RegisterController: UIViewController {
     
-//    let db = Firestore.firestore()
+    let db = Firestore.firestore()
     let datePicker = UIDatePicker()
     let dateFormatter = DateFormatter()
-    let aDataFile = DataFile()
     var UID : String = ""
+    var ShopID : String = ""
     
     @IBOutlet weak var fullnameTextField: UITextField!
     @IBOutlet weak var birthdateTextField: UITextField!
@@ -32,45 +31,49 @@ class RegisterController: UIViewController {
         super.viewDidLoad()
         self.toolbarCreate()
         
+        let navbar = self.navigationController?.navigationBar
+        navbar?.isHidden = false
+        navbar?.backgroundColor = UIColor(red:0.65, green:0.38, blue:0.09, alpha:1.0)
+        navbar?.tintColor = UIColor.white
+        navbar?.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = false
+       
     }
     
     func toolbarCreate(){
         //format for picker
         datePicker.datePickerMode = .date
         // format date
-        
         self.dateFormatter.dateStyle = .long
         self.dateFormatter.timeStyle = .none
         
-        
-        // toolbar
+        /*toolbar*/
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         let toolbarPickdate = UIToolbar()
         toolbarPickdate.sizeToFit()
+        /*********/
         
-        // bar button item
+        /*Bar button item*/
         let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(doneClicked))
         let donePickDate = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(self.donePickdate))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         toolBar.setItems([flexibleSpace , doneButton], animated: false)
         toolbarPickdate.setItems([flexibleSpace , donePickDate], animated: false)
-        
+        /*****************/
         
         fullnameTextField.inputAccessoryView = toolBar
         birthdateTextField.inputAccessoryView = toolbarPickdate
-        // assigning date picker to text field
+        //assigning date picker to text field
         birthdateTextField.inputView = datePicker
         phoneTextField.inputAccessoryView = toolBar
         personidTextField.inputAccessoryView = toolBar
         emailTextField.inputAccessoryView = toolBar
         passwordTextField.inputAccessoryView = toolBar
         repasswordTextField.inputAccessoryView = toolBar
-        ///////////////////////////
     }
     
     @objc func donePickdate(){
@@ -86,29 +89,82 @@ class RegisterController: UIViewController {
 
     @IBAction func registerTapped(_ sender: Any) {
 //        var ref: DocumentReference? = nil
-       
-        
         if let fullname = fullnameTextField.text , let birthdate = birthdateTextField.text , let phone = phoneTextField.text , let personal = personidTextField.text , let email = emailTextField.text , let password = passwordTextField.text , let repass = repasswordTextField.text{
-
-            if aDataFile.isValidEmail(testStr: email) == true{
-            aDataFile.Register(name: fullname, birth: birthdate, phone: phone, personalID: personal, email: email, password: password, re_pass: repass, shop: "")
+            
+            if self.isValidEmail(testStr: email) == true {
+                if password == repass{
+                    Auth.auth().createUser(withEmail: email, password: password, completion: { (user,err) in
+                        if let firebaseError = err{
+                            print(firebaseError.localizedDescription)
+                            return
+                        }
+                        self.UID = (user?.uid)!
+                        self.db.collection("user").document(self.UID).setData(["Fullname" : fullname,
+                                                                               "Birthdate" : birthdate,
+                                                                               "Phone" : phone,
+                                                                               "Personal" : personal,
+                                                                               "Email" : email,
+                                                                               "ShopID" : self.ShopID], completion: { (err) in
+                                                                                //Have some problem
+                                                                                if let err = err {
+                                                                                    print("Error adding data in document: \(err)")
+                                                                                } else{
+                                                                                    print("Document add with ID: \(self.UID)")
+                                                                                    self.createWallet(uid: self.UID, name: fullname, Amount: 0, RewardPoint: 0, ShopID: self.ShopID)
+                                                                                }//Data added
+                                                                                Auth.auth().signIn(withEmail: email, password: password, completion: { (user, err) in
+                                                                                    if let firebaseError = err{
+                                                                                        print(firebaseError.localizedDescription)
+                                                                                        return
+                                                                                    } else{
+                                                                                        let Alert = UIAlertController(title: "Successful", message: "Welcome \(fullname) to eWallet service", preferredStyle: UIAlertControllerStyle.alert)
+                                                                                        Alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: { _ in
+                                                                                            self.gotoMainPage()
+                                                                                        }))
+                                                                                    }
+                                                                                })//Authentication in Firebase when created user
+                        })//Auto login when success register
+                    })//End register
+                    
+                } else{
+                    print("Password and repass is not equal!")
+                }//Password checked
             } else{
                 // create the alert
                 let Alert = UIAlertController(title: "Something Wrong!", message: "Email is invalid!", preferredStyle: UIAlertControllerStyle.alert)
-
                 Alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-
                 self.present(Alert, animated: true, completion: nil)
             }//else Email invalid Alert
         }//END if let
     }//Button Register
     
+    
+    /***********Function Check validate email***********/
+    func isValidEmail(testStr:String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
+    }/**********************************/
+    
+    
+    /***********Create wallet***********/
+    public func createWallet(uid: String,name: String, Amount: Float, RewardPoint: Float, ShopID: String){
+        self.db.collection("wallet").addDocument(data: [
+            "Price":Amount,
+            "RewardPoint":RewardPoint,
+            "UID":uid,
+            "SID":ShopID
+            ])
+    }/*********************************/
+    
+    /*Send page to Main*/
     func gotoMainPage(){
         let mainpageController:MainPageController = self.storyboard!.instantiateViewController(withIdentifier: "MainPageController") as! MainPageController
         mainpageController.UID = self.UID
         self.present(mainpageController, animated: true, completion: nil)
         
     }
-
+    /******************/
    
 }

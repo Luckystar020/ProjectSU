@@ -16,53 +16,33 @@ class GenerateQRController: UIViewController {
     
     var qrcodeImage : CIImage!
     let mainpageController = MainPageController()
-    var UID: String = ""
     var db = Firestore.firestore()
-    
-    var wid = "3T73rGZF0ZftnKQpmchQ"
+    var WalletID : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        print("\(self.WalletID) Woohoo!")
 //        print("This UID is : \(self.UID)")
     }
-    @IBAction func cancleButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-//    func queryData(uid:String) -> String {
-//        db.collection("wallet").getDocuments(){ (querySnapshot, err) in
-//            if let err = err{
-//                print("Error getting documents: \(err)")
-//            } else {
-//                for document in querySnapshot!.documents {
-//                    print("\(document.documentID) => \(document.data())")
-//                }
-//
-//        }
-//    }
-//        return
-//}
+   
     @IBAction func closeButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
    //Generate QRCode and Change UIImage
     @IBAction func changeUIImage(_ sender: Any) {
-        
         if qrcodeImage == nil {
             
-            let data = self.wid.data(using: String.Encoding.utf8, allowLossyConversion: false)
-            
+            let data = self.WalletID.data(using: String.Encoding.utf8, allowLossyConversion: false)
             let filter = CIFilter(name: "CIQRCodeGenerator")
             
             filter?.setValue(data, forKey: "inputMessage")
             filter?.setValue("Q", forKey: "inputCorrectionLevel")
             qrcodeImage = filter?.outputImage
             
-            print("Hi Girls!")
-            if self.wid == ""{
+            print("Hi Girls! \(self.WalletID)" )
+            if self.WalletID == ""{
                 return
             }
         }

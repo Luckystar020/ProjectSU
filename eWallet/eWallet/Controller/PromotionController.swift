@@ -9,30 +9,29 @@
 import UIKit
 
 class PromotionController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
-    @IBAction func pushBack(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        
+//        //show custom nav bar
+//        navigationController?.navigationBar.isHidden = false
+//        navigationController?.navigationBar.barTintColor = UIColor(red:0.65, green:0.38, blue:0.09, alpha:1.0)
+//        navigationController?.navigationBar.tintColor = UIColor.white
+//        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+
+        
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let nav = self.navigationController?.navigationBar
+        nav?.isHidden = false
+        nav?.barStyle = UIBarStyle.black
+        nav?.tintColor = UIColor.yellow
+        
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
