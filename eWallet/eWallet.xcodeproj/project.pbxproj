@@ -10,8 +10,18 @@
 		61DFBC33F35AB378421D69F9 /* Pods_eWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C7CB7DA45B46970B59730D /* Pods_eWallet.framework */; };
 		6338510F0A56C1804430BB69 /* Pods_eWalletTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A3FD731D5FE515C42BD5DE /* Pods_eWalletTests.framework */; };
 		79247BB11FCE56C2003BCC58 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79247BB01FCE56C2003BCC58 /* RegisterController.swift */; };
+		7931A477203718F0001ABF48 /* PromotionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7931A475203718F0001ABF48 /* PromotionViewCell.swift */; };
+		7931A478203718F0001ABF48 /* PromotionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7931A476203718F0001ABF48 /* PromotionViewCell.xib */; };
+		7931A47A20378A79001ABF48 /* HistoryRewardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7931A47920378A79001ABF48 /* HistoryRewardController.swift */; };
+		7931A47F20378DBA001ABF48 /* RewardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7931A47D20378DBA001ABF48 /* RewardViewCell.swift */; };
+		7931A48020378DBA001ABF48 /* RewardViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7931A47E20378DBA001ABF48 /* RewardViewCell.xib */; };
 		7944DD352012BD55005BBA29 /* PromotionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7944DD342012BD55005BBA29 /* PromotionController.swift */; };
 		795AC1052027D7FC001FEF1E /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AC1042027D7FC001FEF1E /* ProfileController.swift */; };
+		795AC1072034EA23001FEF1E /* HistoryTopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AC1062034EA23001FEF1E /* HistoryTopupViewController.swift */; };
+		795AC10B2034EF85001FEF1E /* MaxLengthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AC10A2034EF85001FEF1E /* MaxLengthTextField.swift */; };
+		795AC10F20351B96001FEF1E /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AC10D20351B96001FEF1E /* TableViewCell.swift */; };
+		795AC11020351B96001FEF1E /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 795AC10E20351B96001FEF1E /* TableViewCell.xib */; };
+		795AC11220361F22001FEF1E /* StoreMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AC11120361F22001FEF1E /* StoreMainController.swift */; };
 		7961C7912009505200AB93A6 /* PaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7961C7902009505200AB93A6 /* PaymentController.swift */; };
 		7982AA241FDD3BD800BD2078 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7982AA231FDD3BD800BD2078 /* Assets.xcassets */; };
 		7982AA261FE2813700BD2078 /* HistoryPaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7982AA251FE2813700BD2078 /* HistoryPaymentController.swift */; };
@@ -25,7 +35,6 @@
 		79F0FA6A1FCAD08A00EDF1AE /* eWalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F0FA691FCAD08A00EDF1AE /* eWalletTests.swift */; };
 		79F0FA751FCAD08A00EDF1AE /* eWalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F0FA741FCAD08A00EDF1AE /* eWalletUITests.swift */; };
 		79F18E8D20078C310091530A /* GenerateQRController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F18E8C20078C310091530A /* GenerateQRController.swift */; };
-		79F3101120230E0E0084E3A4 /* DataFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F3101020230E0E0084E3A4 /* DataFile.swift */; };
 		A605282D707DDD044B16E1BC /* Pods_eWalletUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DA081CB31FDEE7E5FDC53C4 /* Pods_eWalletUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,8 +61,18 @@
 		44C23890938D573BAEE955BA /* Pods-eWalletTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eWalletTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-eWalletTests/Pods-eWalletTests.release.xcconfig"; sourceTree = "<group>"; };
 		5A4A18E3B6113E6B90096CF5 /* Pods-eWalletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eWalletTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-eWalletTests/Pods-eWalletTests.debug.xcconfig"; sourceTree = "<group>"; };
 		79247BB01FCE56C2003BCC58 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		7931A475203718F0001ABF48 /* PromotionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewCell.swift; sourceTree = "<group>"; };
+		7931A476203718F0001ABF48 /* PromotionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PromotionViewCell.xib; sourceTree = "<group>"; };
+		7931A47920378A79001ABF48 /* HistoryRewardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRewardController.swift; sourceTree = "<group>"; };
+		7931A47D20378DBA001ABF48 /* RewardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardViewCell.swift; sourceTree = "<group>"; };
+		7931A47E20378DBA001ABF48 /* RewardViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RewardViewCell.xib; sourceTree = "<group>"; };
 		7944DD342012BD55005BBA29 /* PromotionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionController.swift; sourceTree = "<group>"; };
 		795AC1042027D7FC001FEF1E /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		795AC1062034EA23001FEF1E /* HistoryTopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTopupViewController.swift; sourceTree = "<group>"; };
+		795AC10A2034EF85001FEF1E /* MaxLengthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxLengthTextField.swift; sourceTree = "<group>"; };
+		795AC10D20351B96001FEF1E /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		795AC10E20351B96001FEF1E /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		795AC11120361F22001FEF1E /* StoreMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreMainController.swift; sourceTree = "<group>"; };
 		7961C7902009505200AB93A6 /* PaymentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentController.swift; sourceTree = "<group>"; };
 		7982AA231FDD3BD800BD2078 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = eWallet/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		7982AA251FE2813700BD2078 /* HistoryPaymentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPaymentController.swift; sourceTree = "<group>"; };
@@ -73,7 +92,6 @@
 		79F0FA741FCAD08A00EDF1AE /* eWalletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = eWalletUITests.swift; sourceTree = "<group>"; };
 		79F0FA761FCAD08A00EDF1AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79F18E8C20078C310091530A /* GenerateQRController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateQRController.swift; sourceTree = "<group>"; };
-		79F3101020230E0E0084E3A4 /* DataFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFile.swift; sourceTree = "<group>"; };
 		7DA081CB31FDEE7E5FDC53C4 /* Pods_eWalletUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eWalletUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3BB8E22AEBD25EAD0433967 /* Pods-eWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-eWallet/Pods-eWallet.debug.xcconfig"; sourceTree = "<group>"; };
 		AE5346AD8F8E93C8F60D0F22 /* Pods-eWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eWallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-eWallet/Pods-eWallet.release.xcconfig"; sourceTree = "<group>"; };
@@ -122,6 +140,8 @@
 		792729B01FCC81AF0064D95F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				795AC10C20351B73001FEF1E /* TableViewCell */,
+				795AC1092034EF42001FEF1E /* Setting */,
 				79C58DF61FCAEA4400CB5C4B /* MainPageController.swift */,
 				79F0FA561FCAD08A00EDF1AE /* LoginPageController.swift */,
 				79247BB01FCE56C2003BCC58 /* RegisterController.swift */,
@@ -130,10 +150,33 @@
 				7961C7902009505200AB93A6 /* PaymentController.swift */,
 				79A600AD2010943900607C66 /* PaymentDetailController.swift */,
 				7944DD342012BD55005BBA29 /* PromotionController.swift */,
-				79F3101020230E0E0084E3A4 /* DataFile.swift */,
 				795AC1042027D7FC001FEF1E /* ProfileController.swift */,
+				795AC1062034EA23001FEF1E /* HistoryTopupViewController.swift */,
+				795AC11120361F22001FEF1E /* StoreMainController.swift */,
+				7931A47920378A79001ABF48 /* HistoryRewardController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		795AC1092034EF42001FEF1E /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				795AC10A2034EF85001FEF1E /* MaxLengthTextField.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		795AC10C20351B73001FEF1E /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				795AC10D20351B96001FEF1E /* TableViewCell.swift */,
+				795AC10E20351B96001FEF1E /* TableViewCell.xib */,
+				7931A475203718F0001ABF48 /* PromotionViewCell.swift */,
+				7931A476203718F0001ABF48 /* PromotionViewCell.xib */,
+				7931A47D20378DBA001ABF48 /* RewardViewCell.swift */,
+				7931A47E20378DBA001ABF48 /* RewardViewCell.xib */,
+			);
+			path = TableViewCell;
 			sourceTree = "<group>";
 		};
 		79C58DF31FCAD3CA00CB5C4B /* Storyboard */ = {
@@ -327,10 +370,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7931A478203718F0001ABF48 /* PromotionViewCell.xib in Resources */,
 				79F0FA5F1FCAD08A00EDF1AE /* LaunchScreen.storyboard in Resources */,
+				795AC11020351B96001FEF1E /* TableViewCell.xib in Resources */,
 				79E21DA72025951C00A396F6 /* GoogleService-Info.plist in Resources */,
 				7982AA241FDD3BD800BD2078 /* Assets.xcassets in Resources */,
 				79F0FA5A1FCAD08A00EDF1AE /* Main.storyboard in Resources */,
+				7931A48020378DBA001ABF48 /* RewardViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,16 +574,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				79247BB11FCE56C2003BCC58 /* RegisterController.swift in Sources */,
+				795AC11220361F22001FEF1E /* StoreMainController.swift in Sources */,
 				79F18E8D20078C310091530A /* GenerateQRController.swift in Sources */,
+				7931A47A20378A79001ABF48 /* HistoryRewardController.swift in Sources */,
 				7982AA261FE2813700BD2078 /* HistoryPaymentController.swift in Sources */,
+				7931A477203718F0001ABF48 /* PromotionViewCell.swift in Sources */,
+				7931A47F20378DBA001ABF48 /* RewardViewCell.swift in Sources */,
 				7944DD352012BD55005BBA29 /* PromotionController.swift in Sources */,
 				7961C7912009505200AB93A6 /* PaymentController.swift in Sources */,
+				795AC10F20351B96001FEF1E /* TableViewCell.swift in Sources */,
+				795AC10B2034EF85001FEF1E /* MaxLengthTextField.swift in Sources */,
 				79F0FA571FCAD08A00EDF1AE /* LoginPageController.swift in Sources */,
 				79A600AE2010943900607C66 /* PaymentDetailController.swift in Sources */,
 				795AC1052027D7FC001FEF1E /* ProfileController.swift in Sources */,
+				795AC1072034EA23001FEF1E /* HistoryTopupViewController.swift in Sources */,
 				79C58DF71FCAEA4400CB5C4B /* MainPageController.swift in Sources */,
 				79F0FA551FCAD08A00EDF1AE /* AppDelegate.swift in Sources */,
-				79F3101120230E0E0084E3A4 /* DataFile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class HistoryPayment: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -14,12 +15,20 @@ class HistoryPayment: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var paymentno : String!
     var price : Float!
+    var db = Firestore.firestore()
+    var WID : String = ""
     
     let paymentNumber = ["FFF","AAA","BBB"]
     let priceCell = [1234,111,555]
+//    var dateTopup : Array = [NSDate]
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var paymentLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(self.WID)
+        
         
         
         
@@ -44,10 +53,13 @@ class HistoryPayment: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = historyPaymentTable.dequeueReusableCell(withIdentifier: "Payment")
         
+        
         //        cell?.textLabel?.text = paymentNumber[indexPath.row]
         //        cell?.detailTextLabel?.text = ("\(priceCell[indexPath.row])")
         
         return cell!
     }
+    
+
     
 }

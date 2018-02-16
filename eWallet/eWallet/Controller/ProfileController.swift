@@ -18,13 +18,65 @@ class ProfileController: UIViewController {
     @IBOutlet weak var Fullname: UITextField!
     @IBOutlet weak var Birthdate: UITextField!
     @IBOutlet weak var Phone: UITextField!
+    @IBOutlet weak var Email: UITextField!
     @IBOutlet weak var versionLabel: UILabel!
-    var r = "0.1.3"
+    let datePicker = UIDatePicker()
+    let dateFormatter = DateFormatter()
+    var r = "0.1.4"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        versionLabel.text = "Version \(r)"
-        // Do any additional setup after loading the view.
+        versionLabel.text = "Version \(r)"
+        
+        //format for picker
+        datePicker.datePickerMode = .date
+        // format date
+        self.dateFormatter.dateStyle = .long
+        self.dateFormatter.timeZone = NSTimeZone(abbreviation: "GMT+7:00")! as TimeZone
+        self.dateFormatter.timeStyle = .none
+        
+        /*toolbar*/
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let toolbarPickdate = UIToolbar()
+        toolbarPickdate.sizeToFit()
+        /*********/
+        
+        /*Bar button item*/
+        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(doneClicked))
+        let donePickDate = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(self.donePickdate))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        toolBar.setItems([flexibleSpace , doneButton], animated: false)
+        toolbarPickdate.setItems([flexibleSpace , donePickDate], animated: false)
+        /*****************/
+        
+        Fullname.inputAccessoryView = toolBar
+        Birthdate.inputAccessoryView = toolbarPickdate
+        //assigning date picker to text field
+        Birthdate.inputView = datePicker
+        Phone.inputAccessoryView = toolBar
+        
+        self.db.collection("user").document(self.UID).addSnapshotListener { (snapshot, err) in
+            if let err = err{
+                print(err.localizedDescription)
+            }else{
+                self.Fullname.text?.append(snapshot?.data()!["Fullname"] as! String)
+                self.Birthdate.text?.append(snapshot?.data()!["Birthdate"] as! String)
+                self.Phone.text?.append(snapshot?.data()!["Phone"] as! String)
+                self.Email.text?.append(snapshot?.data()!["Email"] as! String)
+                self.Email.isUserInteractionEnabled = false
+            }
+        }
+        
+    }
+    
+    @objc func donePickdate(){
+        Birthdate.text = self.dateFormatter.string(from: datePicker.date)
+        view.endEditing(true)
+    }
+    
+    @objc func doneClicked() {
+        view.endEditing(true)
     }
     
     override func viewDidDisappear(_ animated: Bool) {

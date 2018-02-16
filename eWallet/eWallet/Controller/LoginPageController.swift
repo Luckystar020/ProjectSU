@@ -11,7 +11,10 @@ import FirebaseAuth
 
 class LoginPageController: UIViewController{
     
+//    var db = Firestore.firestore()
     var UID : String = ""
+    var SID : String = ""
+    var TypeUser : Int = 0
     @IBOutlet weak var emailTextFeild: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
@@ -19,11 +22,13 @@ class LoginPageController: UIViewController{
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         //hidden nav bar
         navigationController?.navigationBar.isHidden = true
     }
-    
-
     
     override func viewDidAppear(_ animated: Bool) {
         //Condition Check was logged in auto to MainPage
@@ -55,9 +60,16 @@ class LoginPageController: UIViewController{
     }
     
     func whenLogin(){
-        let mainpageController:MainPageController = self.storyboard!.instantiateViewController(withIdentifier: "MainPageController") as! MainPageController
-        mainpageController.UID = self.UID
-        self.present(mainpageController, animated: true, completion: nil)
+//        db.collection("user").document(self.UID).getDocument { (doc, err) in
+//            if let err = err{
+//                print(err.localizedDescription)
+//            }else{
+//                self.TypeUser = doc?.data()!["UserType"] as! Int
+//            }
+//        }
+            let mainpageController:MainPageController = self.storyboard!.instantiateViewController(withIdentifier: "MainPageController") as! MainPageController
+            mainpageController.UID = self.UID
+            self.present(mainpageController, animated: true, completion: nil)
     }
 }
 

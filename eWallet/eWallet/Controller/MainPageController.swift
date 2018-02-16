@@ -77,15 +77,29 @@ class MainPageController: UIViewController,UINavigationControllerDelegate,UIImag
         
     }
     
-//    @IBAction func promoBTN(_ sender: Any) {
-//        let promotionPage:PromotionController = self.storyboard!.instantiateViewController(withIdentifier: "PromotionController") as! PromotionController
-//        self.present(promotionPage, animated: true, completion: nil)
-//    }
+    @IBAction func rewardBTN(_ sender: Any) {
+        let historyReward:HistoryRewardController = self.storyboard!.instantiateViewController(withIdentifier: "HistoryReward") as! HistoryRewardController
+        
+        self.present(historyReward, animated: true, completion: nil)
+    }
     
-//    @IBAction func paymentHistoryBTN(_ sender: Any) {
-//        let historyPayment:HistoryPayment = self.storyboard!.instantiateViewController(withIdentifier: "HistoryPayment") as! HistoryPayment
-//        self.present(historyPayment, animated: true, completion: nil)
-//    }
+    @IBAction func promoBTN(_ sender: Any) {
+        let promotionPage:PromotionController = self.storyboard!.instantiateViewController(withIdentifier: "Promotion") as! PromotionController
+        self.present(promotionPage, animated: true, completion: nil)
+    }
+    
+    @IBAction func paymentHistoryBTN(_ sender: Any) {
+        let historyPayment:HistoryPayment = self.storyboard!.instantiateViewController(withIdentifier: "HistoryPayment") as! HistoryPayment
+        historyPayment.WID = self.WalletID
+        self.present(historyPayment, animated: true, completion: nil)
+    }
+    
+    @IBAction func topupHistoryBTN(_ sender: Any) {
+        
+        let topupPayment:HistoryTopupViewController = self.storyboard?.instantiateViewController(withIdentifier: "HistoryTopup") as! HistoryTopupViewController
+        topupPayment.WID = self.WalletID
+        self.present(topupPayment, animated: true, completion: nil)
+    }
     
    
     //Get data from Display name and Balance
@@ -183,6 +197,7 @@ class MainPageController: UIViewController,UINavigationControllerDelegate,UIImag
     }
     func editProfile(){
         let profileController : ProfileController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileController") as! ProfileController
+        profileController.UID = self.UID
         self.present(profileController, animated: true, completion: nil)
     }
     /** END function option change profile**/

@@ -31,16 +31,14 @@ class RegisterController: UIViewController {
         super.viewDidLoad()
         self.toolbarCreate()
         
-        let navbar = self.navigationController?.navigationBar
-        navbar?.isHidden = false
-        navbar?.backgroundColor = UIColor(red:0.65, green:0.38, blue:0.09, alpha:1.0)
-        navbar?.tintColor = UIColor.white
-        navbar?.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-       
+        let navbar = self.navigationController?.navigationBar
+        navbar?.isHidden = false
+        navbar?.backgroundColor = UIColor(red:0.65, green:0.38, blue:0.09, alpha:1.0)
+        navbar?.tintColor = UIColor.black
+        navbar?.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
     }
     
     func toolbarCreate(){
@@ -48,6 +46,7 @@ class RegisterController: UIViewController {
         datePicker.datePickerMode = .date
         // format date
         self.dateFormatter.dateStyle = .long
+        self.dateFormatter.timeZone = NSTimeZone(abbreviation: "GMT+7:00")! as TimeZone
         self.dateFormatter.timeStyle = .none
         
         /*toolbar*/
@@ -84,6 +83,8 @@ class RegisterController: UIViewController {
     @objc func doneClicked() {
         view.endEditing(true)
     }
+    
+    
     
     
 
@@ -154,6 +155,7 @@ class RegisterController: UIViewController {
             "Price":Amount,
             "RewardPoint":RewardPoint,
             "UID":uid,
+            "Type":1,
             "SID":ShopID
             ])
     }/*********************************/
