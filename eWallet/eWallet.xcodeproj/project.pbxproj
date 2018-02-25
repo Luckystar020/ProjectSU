@@ -23,6 +23,9 @@
 		795AC11020351B96001FEF1E /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 795AC10E20351B96001FEF1E /* TableViewCell.xib */; };
 		795AC11220361F22001FEF1E /* StoreMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AC11120361F22001FEF1E /* StoreMainController.swift */; };
 		7961C7912009505200AB93A6 /* PaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7961C7902009505200AB93A6 /* PaymentController.swift */; };
+		7963CDFF203D8CB40033DE1A /* RegisterShopController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963CDFE203D8CB40033DE1A /* RegisterShopController.swift */; };
+		797EC3B3203825AB0075E1C9 /* PaymentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797EC3B1203825AB0075E1C9 /* PaymentViewCell.swift */; };
+		797EC3B4203825AB0075E1C9 /* PaymentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 797EC3B2203825AB0075E1C9 /* PaymentViewCell.xib */; };
 		7982AA241FDD3BD800BD2078 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7982AA231FDD3BD800BD2078 /* Assets.xcassets */; };
 		7982AA261FE2813700BD2078 /* HistoryPaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7982AA251FE2813700BD2078 /* HistoryPaymentController.swift */; };
 		79A600AE2010943900607C66 /* PaymentDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A600AD2010943900607C66 /* PaymentDetailController.swift */; };
@@ -74,6 +77,9 @@
 		795AC10E20351B96001FEF1E /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		795AC11120361F22001FEF1E /* StoreMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreMainController.swift; sourceTree = "<group>"; };
 		7961C7902009505200AB93A6 /* PaymentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentController.swift; sourceTree = "<group>"; };
+		7963CDFE203D8CB40033DE1A /* RegisterShopController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterShopController.swift; sourceTree = "<group>"; };
+		797EC3B1203825AB0075E1C9 /* PaymentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewCell.swift; sourceTree = "<group>"; };
+		797EC3B2203825AB0075E1C9 /* PaymentViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentViewCell.xib; sourceTree = "<group>"; };
 		7982AA231FDD3BD800BD2078 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = eWallet/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		7982AA251FE2813700BD2078 /* HistoryPaymentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPaymentController.swift; sourceTree = "<group>"; };
 		79A600AD2010943900607C66 /* PaymentDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailController.swift; sourceTree = "<group>"; };
@@ -140,20 +146,14 @@
 		792729B01FCC81AF0064D95F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7963CE00203ECE1F0033DE1A /* User */,
 				795AC10C20351B73001FEF1E /* TableViewCell */,
 				795AC1092034EF42001FEF1E /* Setting */,
-				79C58DF61FCAEA4400CB5C4B /* MainPageController.swift */,
 				79F0FA561FCAD08A00EDF1AE /* LoginPageController.swift */,
 				79247BB01FCE56C2003BCC58 /* RegisterController.swift */,
 				7982AA251FE2813700BD2078 /* HistoryPaymentController.swift */,
-				79F18E8C20078C310091530A /* GenerateQRController.swift */,
-				7961C7902009505200AB93A6 /* PaymentController.swift */,
-				79A600AD2010943900607C66 /* PaymentDetailController.swift */,
-				7944DD342012BD55005BBA29 /* PromotionController.swift */,
-				795AC1042027D7FC001FEF1E /* ProfileController.swift */,
-				795AC1062034EA23001FEF1E /* HistoryTopupViewController.swift */,
 				795AC11120361F22001FEF1E /* StoreMainController.swift */,
-				7931A47920378A79001ABF48 /* HistoryRewardController.swift */,
+				7963CDFE203D8CB40033DE1A /* RegisterShopController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -175,8 +175,25 @@
 				7931A476203718F0001ABF48 /* PromotionViewCell.xib */,
 				7931A47D20378DBA001ABF48 /* RewardViewCell.swift */,
 				7931A47E20378DBA001ABF48 /* RewardViewCell.xib */,
+				797EC3B1203825AB0075E1C9 /* PaymentViewCell.swift */,
+				797EC3B2203825AB0075E1C9 /* PaymentViewCell.xib */,
 			);
 			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		7963CE00203ECE1F0033DE1A /* User */ = {
+			isa = PBXGroup;
+			children = (
+				79C58DF61FCAEA4400CB5C4B /* MainPageController.swift */,
+				79F18E8C20078C310091530A /* GenerateQRController.swift */,
+				7961C7902009505200AB93A6 /* PaymentController.swift */,
+				79A600AD2010943900607C66 /* PaymentDetailController.swift */,
+				7944DD342012BD55005BBA29 /* PromotionController.swift */,
+				795AC1042027D7FC001FEF1E /* ProfileController.swift */,
+				795AC1062034EA23001FEF1E /* HistoryTopupViewController.swift */,
+				7931A47920378A79001ABF48 /* HistoryRewardController.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		79C58DF31FCAD3CA00CB5C4B /* Storyboard */ = {
@@ -375,6 +392,7 @@
 				795AC11020351B96001FEF1E /* TableViewCell.xib in Resources */,
 				79E21DA72025951C00A396F6 /* GoogleService-Info.plist in Resources */,
 				7982AA241FDD3BD800BD2078 /* Assets.xcassets in Resources */,
+				797EC3B4203825AB0075E1C9 /* PaymentViewCell.xib in Resources */,
 				79F0FA5A1FCAD08A00EDF1AE /* Main.storyboard in Resources */,
 				7931A48020378DBA001ABF48 /* RewardViewCell.xib in Resources */,
 			);
@@ -578,7 +596,9 @@
 				79F18E8D20078C310091530A /* GenerateQRController.swift in Sources */,
 				7931A47A20378A79001ABF48 /* HistoryRewardController.swift in Sources */,
 				7982AA261FE2813700BD2078 /* HistoryPaymentController.swift in Sources */,
+				797EC3B3203825AB0075E1C9 /* PaymentViewCell.swift in Sources */,
 				7931A477203718F0001ABF48 /* PromotionViewCell.swift in Sources */,
+				7963CDFF203D8CB40033DE1A /* RegisterShopController.swift in Sources */,
 				7931A47F20378DBA001ABF48 /* RewardViewCell.swift in Sources */,
 				7944DD352012BD55005BBA29 /* PromotionController.swift in Sources */,
 				7961C7912009505200AB93A6 /* PaymentController.swift in Sources */,

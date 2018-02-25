@@ -16,8 +16,8 @@ class RegisterController: UIViewController {
     let db = Firestore.firestore()
     let datePicker = UIDatePicker()
     let dateFormatter = DateFormatter()
-    var UID : String = ""
-    var ShopID : String = ""
+    var UserID : String = ""
+    var StoreID : String = ""
     
     @IBOutlet weak var fullnameTextField: UITextField!
     @IBOutlet weak var birthdateTextField: UITextField!
@@ -36,7 +36,7 @@ class RegisterController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         let navbar = self.navigationController?.navigationBar
         navbar?.isHidden = false
-        navbar?.backgroundColor = UIColor(red:0.65, green:0.38, blue:0.09, alpha:1.0)
+        navbar?.backgroundColor = UIColor.black
         navbar?.tintColor = UIColor.black
         navbar?.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.black]
     }
@@ -84,13 +84,10 @@ class RegisterController: UIViewController {
         view.endEditing(true)
     }
     
-    
-    
-    
 
     @IBAction func registerTapped(_ sender: Any) {
 //        var ref: DocumentReference? = nil
-        if let fullname = fullnameTextField.text , let birthdate = birthdateTextField.text , let phone = phoneTextField.text , let personal = personidTextField.text , let email = emailTextField.text , let password = passwordTextField.text , let repass = repasswordTextField.text{
+        if let fullname = fullnameTextField.text, let birthdate = birthdateTextField.text, let phone = phoneTextField.text, let personal = personidTextField.text, let email = emailTextField.text, let password = passwordTextField.text, let repass = repasswordTextField.text{
             
             if self.isValidEmail(testStr: email) == true {
                 if password == repass{
@@ -99,37 +96,41 @@ class RegisterController: UIViewController {
                             print(firebaseError.localizedDescription)
                             return
                         }
-                        self.UID = (user?.uid)!
-                        self.db.collection("user").document(self.UID).setData(["Fullname" : fullname,
-                                                                               "Birthdate" : birthdate,
-                                                                               "Phone" : phone,
-                                                                               "Personal" : personal,
-                                                                               "Email" : email,
-                                                                               "ShopID" : self.ShopID], completion: { (err) in
-                                                                                //Have some problem
-                                                                                if let err = err {
-                                                                                    print("Error adding data in document: \(err)")
-                                                                                } else{
-                                                                                    print("Document add with ID: \(self.UID)")
-                                                                                    self.createWallet(uid: self.UID, name: fullname, Amount: 0, RewardPoint: 0, ShopID: self.ShopID)
-                                                                                }//Data added
-                                                                                Auth.auth().signIn(withEmail: email, password: password, completion: { (user, err) in
-                                                                                    if let firebaseError = err{
-                                                                                        print(firebaseError.localizedDescription)
-                                                                                        return
-                                                                                    } else{
-                                                                                        let Alert = UIAlertController(title: "Successful", message: "Welcome \(fullname) to eWallet service", preferredStyle: UIAlertControllerStyle.alert)
-                                                                                        Alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: { _ in
-                                                                                            self.gotoMainPage()
-                                                                                        }))
-                                                                                    }
-                                                                                })//Authentication in Firebase when created user
-                        })//Auto login when success register
+                        self.UserID = (user?.uid)!
+                        self.db.collection("Users")
+                            .document(self.UserID)
+                            .setData(["Fullname" : fullname,
+                                      "Birthdate" : birthdate,
+                                      "Phone" : phone,
+                                      "Personal" : personal,
+                                      "Email" : email,
+                                      "StoreID" : self.StoreID,
+                                      "Usertype": 1],
+                                     completion: { (err) in
+                                        //Have some problem
+                                        if let err = err {
+                                            print("Error adding data in document: \(err)")
+                                        } else{
+                                            print("Document add with ID: \(self.UserID)")
+                                            self.createWallet(uid: self.UserID, name: fullname, Amount: 0, RewardPoint: 0, StoreID: self.StoreID)
+                                        }//Data added
+                                        Auth.auth().signIn(withEmail: email, password: password, completion: { (user, err) in
+                                            if let firebaseError = err{
+                                                print(firebaseError.localizedDescription)
+                                                return
+                                            } else{
+                                                let Alert = UIAlertController(title: "Successful", message: "Welcome \(fullname) to eWallet service", preferredStyle: UIAlertControllerStyle.alert)
+                                                Alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: { _ in
+                                                    self.gotoMainPage()
+                                                }))
+                                                self.present(Alert, animated: true, completion: nil)
+                                            }
+                                        })//Authentication in Firebase when created user
+                            })//Auto login when success register
                     })//End register
-                    
                 } else{
-                    print("Password and repass is not equal!")
-                }//Password checked
+                    print("Password and repass is not correct!")
+                }
             } else{
                 // create the alert
                 let Alert = UIAlertController(title: "Something Wrong!", message: "Email is invalid!", preferredStyle: UIAlertControllerStyle.alert)
@@ -143,29 +144,26 @@ class RegisterController: UIViewController {
     /***********Function Check validate email***********/
     func isValidEmail(testStr:String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: testStr)
-    }/**********************************/
+    }/**************************************************/
     
     
     /***********Create wallet***********/
-    public func createWallet(uid: String,name: String, Amount: Float, RewardPoint: Float, ShopID: String){
-        self.db.collection("wallet").addDocument(data: [
+    public func createWallet(uid: String,name: String, Amount: Float, RewardPoint: Int, StoreID: String){
+        self.db.collection("Wallet").addDocument(data: [
             "Price":Amount,
             "RewardPoint":RewardPoint,
-            "UID":uid,
-            "Type":1,
-            "SID":ShopID
+            "UserID":uid,
+            "StoreID":StoreID
             ])
     }/*********************************/
     
     /*Send page to Main*/
     func gotoMainPage(){
         let mainpageController:MainPageController = self.storyboard!.instantiateViewController(withIdentifier: "MainPageController") as! MainPageController
-        mainpageController.UID = self.UID
+        mainpageController.UID = self.UserID
         self.present(mainpageController, animated: true, completion: nil)
-        
     }
     /******************/
    

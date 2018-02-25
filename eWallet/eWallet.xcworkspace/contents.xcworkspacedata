@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:PaymentViewCell.swift">
+   </FileRef>
+   <FileRef
+      location = "group:PaymentViewCell.xib">
+   </FileRef>
+   <FileRef
       location = "group:eWallet.xcodeproj">
    </FileRef>
    <FileRef

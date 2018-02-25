@@ -11,6 +11,7 @@ import FirebaseFirestore
 
 class StoreMainController: UIViewController {
     
+    var UserID : String = ""
     var StoreID : String = ""
 
     override func viewDidLoad() {

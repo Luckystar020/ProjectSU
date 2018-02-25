@@ -8,12 +8,13 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class LoginPageController: UIViewController{
     
-//    var db = Firestore.firestore()
-    var UID : String = ""
-    var SID : String = ""
+//    let db = Firestore.firestore()
+    var UserID : String = ""
+    var StoreID : String = ""
     var TypeUser : Int = 0
     @IBOutlet weak var emailTextFeild: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -33,14 +34,9 @@ class LoginPageController: UIViewController{
     override func viewDidAppear(_ animated: Bool) {
         //Condition Check was logged in auto to MainPage
         if Auth.auth().currentUser != nil {
-            self.UID = (Auth.auth().currentUser?.uid)!
-            self.whenLogin()
+            self.whenLogin(UserID: (Auth.auth().currentUser?.uid)!)
         }
     }
-    
-//    @IBAction func createAccount(_ sender: Any) {
-//        self.performSegue(withIdentifier: "RegisterController", sender: nil)
-//    }
     
     @IBAction func loginTapped(_ sender: Any) {
         if let email = emailTextFeild.text?.lowercased(), let password = passwordTextField.text{
@@ -51,25 +47,35 @@ class LoginPageController: UIViewController{
                     return
                 } else{
                     //Successful to Login
-                    self.UID = (user?.uid)!
-                    self.whenLogin()
+                    self.whenLogin(UserID: (user?.uid)!)
                     print("Success!")
                 }
             })
         }
     }
     
-    func whenLogin(){
-//        db.collection("user").document(self.UID).getDocument { (doc, err) in
-//            if let err = err{
-//                print(err.localizedDescription)
-//            }else{
-//                self.TypeUser = doc?.data()!["UserType"] as! Int
-//            }
-//        }
-            let mainpageController:MainPageController = self.storyboard!.instantiateViewController(withIdentifier: "MainPageController") as! MainPageController
-            mainpageController.UID = self.UID
-            self.present(mainpageController, animated: true, completion: nil)
+    func whenLogin(UserID : String){
+        let db = Firestore.firestore()
+        db.collection("Users").document(self.UserID).getDocument { (doc, err) in
+            if let err = err{
+                print(err.localizedDescription)
+            }else{
+                self.TypeUser = doc?.data()!["UserType"] as! Int
+                if self.TypeUser == 1{
+                    let mainpageController:MainPageController = self.storyboard!.instantiateViewController(withIdentifier: "MainPageController") as! MainPageController
+                    mainpageController.UID = self.UserID
+                    self.present(mainpageController, animated: true, completion: nil)
+                } else if self.TypeUser == 2{
+                    let storeMain:StoreMainController = self.storyboard!.instantiateViewController(withIdentifier: "StoreMainController") as! StoreMainController
+                    storeMain.UserID = self.UserID
+                    self.present(storeMain, animated: true, completion: nil)
+                }
+            }
+        }
+//        let mainpageController:MainPageController = self.storyboard!.instantiateViewController(withIdentifier: "MainPageController") as! MainPageController
+//        mainpageController.UID = UserID
+//        self.present(mainpageController, animated: true, completion: nil)
+        
     }
 }
 

@@ -9,57 +9,68 @@
 import UIKit
 import FirebaseFirestore
 
+struct dataPayment {
+    let paymentno: String!
+    let paymentdate:String!
+    let paymentAmount:Int!
+}
+
 class HistoryPayment: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
     
+
     @IBOutlet weak var historyPaymentTable: UITableView!
     
     var paymentno : String!
     var price : Float!
     var db = Firestore.firestore()
     var WID : String = ""
-    
-    let paymentNumber = ["FFF","AAA","BBB"]
-    let priceCell = [1234,111,555]
-//    var dateTopup : Array = [NSDate]
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var paymentLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
-    
+    var dateFormatter = DateFormatter()
+    var array = [dataPayment]()
+
     override func viewDidLoad() {
-        super.viewDidLoad()
         print(self.WID)
-        
-        
-        
-        
-        // Do any additional setup after loading the view.
-        historyPaymentTable.delegate = self
-        historyPaymentTable.dataSource = self
+        db.collection("wallet").document(self.WID).collection("HistoryTopup").getDocuments { (snapshot, err) in
+            if let err = err{
+                print(err.localizedDescription)
+            }else{
+                for document in (snapshot?.documents)!{
+                    print(document.documentID )
+                    print(document.data()["AmountMoney"] as! Int)
+                    print(document.data()["DateTopup"] as! Date)
+                    print(document.data()["WID"] as! String)
+                    //                    self.dateTopup.append(document.data()["DateTopup"] as Any)
+                    self.dateFormatter.timeZone = NSTimeZone(abbreviation: "GMT+07:00")! as TimeZone
+                    self.dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                    let stringDate = self.dateFormatter.string(from: document.data()["DateTopup"] as! Date)
+                    self.array += [dataPayment(paymentno: document.documentID, paymentdate: stringDate, paymentAmount: document.data()["AmountMoney"] as! Int)]
+                    
+                }
+                print(self.array)
+                self.historyPaymentTable.reloadData()
+                self.historyPaymentTable.delegate = self
+                self.historyPaymentTable.dataSource = self
+            }
+        }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //show custom nav bar
-        navigationController?.setNavigationBarHidden(false, animated: animated)
-        navigationController?.navigationBar.barTintColor = UIColor(red:0.65, green:0.38, blue:0.09, alpha:1.0)
-        navigationController?.navigationBar.tintColor = UIColor.white
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-    }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return paymentNumber.count
-    }
+        
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return array.count
+        }
+        
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = Bundle.main.loadNibNamed("PaymentViewCell", owner: self, options: nil)?.first as! PaymentViewCell
+            cell.paymentNo.text = array[indexPath.row].paymentno
+            cell.paymentDate.text = array[indexPath.row].paymentdate
+            cell.paymentAmount.text = "+" + String(array[indexPath.row].paymentAmount) + "฿"
+            return cell
+        }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = historyPaymentTable.dequeueReusableCell(withIdentifier: "Payment")
-        
-        
-        //        cell?.textLabel?.text = paymentNumber[indexPath.row]
-        //        cell?.detailTextLabel?.text = ("\(priceCell[indexPath.row])")
-        
-        return cell!
+    @IBAction func backBTN(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
-    
 
     
 }

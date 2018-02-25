@@ -60,6 +60,10 @@ class MainPageController: UIViewController,UINavigationControllerDelegate,UIImag
         print("TimeStamp : \(timestamp)")
         
 //        print(self.UID)
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         callData()
     }
     
