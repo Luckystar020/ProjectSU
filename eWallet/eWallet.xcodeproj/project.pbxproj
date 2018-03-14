@@ -16,6 +16,7 @@
 		7931A47F20378DBA001ABF48 /* RewardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7931A47D20378DBA001ABF48 /* RewardViewCell.swift */; };
 		7931A48020378DBA001ABF48 /* RewardViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7931A47E20378DBA001ABF48 /* RewardViewCell.xib */; };
 		7944DD352012BD55005BBA29 /* PromotionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7944DD342012BD55005BBA29 /* PromotionController.swift */; };
+		794CC66C20480D0B00847DE3 /* topupScanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794CC66B20480D0B00847DE3 /* topupScanController.swift */; };
 		795AC1052027D7FC001FEF1E /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AC1042027D7FC001FEF1E /* ProfileController.swift */; };
 		795AC1072034EA23001FEF1E /* HistoryTopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AC1062034EA23001FEF1E /* HistoryTopupViewController.swift */; };
 		795AC10B2034EF85001FEF1E /* MaxLengthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AC10A2034EF85001FEF1E /* MaxLengthTextField.swift */; };
@@ -24,6 +25,8 @@
 		795AC11220361F22001FEF1E /* StoreMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AC11120361F22001FEF1E /* StoreMainController.swift */; };
 		7961C7912009505200AB93A6 /* PaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7961C7902009505200AB93A6 /* PaymentController.swift */; };
 		7963CDFF203D8CB40033DE1A /* RegisterShopController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7963CDFE203D8CB40033DE1A /* RegisterShopController.swift */; };
+		79666E542051947600552027 /* DetailTopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79666E532051947600552027 /* DetailTopupController.swift */; };
+		79666E562052539900552027 /* StoreQRController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79666E552052539900552027 /* StoreQRController.swift */; };
 		797EC3B3203825AB0075E1C9 /* PaymentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797EC3B1203825AB0075E1C9 /* PaymentViewCell.swift */; };
 		797EC3B4203825AB0075E1C9 /* PaymentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 797EC3B2203825AB0075E1C9 /* PaymentViewCell.xib */; };
 		7982AA241FDD3BD800BD2078 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7982AA231FDD3BD800BD2078 /* Assets.xcassets */; };
@@ -70,6 +73,7 @@
 		7931A47D20378DBA001ABF48 /* RewardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardViewCell.swift; sourceTree = "<group>"; };
 		7931A47E20378DBA001ABF48 /* RewardViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RewardViewCell.xib; sourceTree = "<group>"; };
 		7944DD342012BD55005BBA29 /* PromotionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionController.swift; sourceTree = "<group>"; };
+		794CC66B20480D0B00847DE3 /* topupScanController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = topupScanController.swift; sourceTree = "<group>"; };
 		795AC1042027D7FC001FEF1E /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		795AC1062034EA23001FEF1E /* HistoryTopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTopupViewController.swift; sourceTree = "<group>"; };
 		795AC10A2034EF85001FEF1E /* MaxLengthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxLengthTextField.swift; sourceTree = "<group>"; };
@@ -78,6 +82,8 @@
 		795AC11120361F22001FEF1E /* StoreMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreMainController.swift; sourceTree = "<group>"; };
 		7961C7902009505200AB93A6 /* PaymentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentController.swift; sourceTree = "<group>"; };
 		7963CDFE203D8CB40033DE1A /* RegisterShopController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterShopController.swift; sourceTree = "<group>"; };
+		79666E532051947600552027 /* DetailTopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTopupController.swift; sourceTree = "<group>"; };
+		79666E552052539900552027 /* StoreQRController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreQRController.swift; sourceTree = "<group>"; };
 		797EC3B1203825AB0075E1C9 /* PaymentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewCell.swift; sourceTree = "<group>"; };
 		797EC3B2203825AB0075E1C9 /* PaymentViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentViewCell.xib; sourceTree = "<group>"; };
 		7982AA231FDD3BD800BD2078 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = eWallet/Assets.xcassets; sourceTree = SOURCE_ROOT; };
@@ -143,19 +149,40 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		790DB2FB20591348003AA5AD /* History */ = {
+			isa = PBXGroup;
+			children = (
+				7982AA251FE2813700BD2078 /* HistoryPaymentController.swift */,
+				795AC1062034EA23001FEF1E /* HistoryTopupViewController.swift */,
+				7931A47920378A79001ABF48 /* HistoryRewardController.swift */,
+				7944DD342012BD55005BBA29 /* PromotionController.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
 		792729B01FCC81AF0064D95F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				790DB2FB20591348003AA5AD /* History */,
+				794CC66A20480CBF00847DE3 /* Store */,
 				7963CE00203ECE1F0033DE1A /* User */,
 				795AC10C20351B73001FEF1E /* TableViewCell */,
 				795AC1092034EF42001FEF1E /* Setting */,
 				79F0FA561FCAD08A00EDF1AE /* LoginPageController.swift */,
-				79247BB01FCE56C2003BCC58 /* RegisterController.swift */,
-				7982AA251FE2813700BD2078 /* HistoryPaymentController.swift */,
-				795AC11120361F22001FEF1E /* StoreMainController.swift */,
-				7963CDFE203D8CB40033DE1A /* RegisterShopController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		794CC66A20480CBF00847DE3 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				795AC11120361F22001FEF1E /* StoreMainController.swift */,
+				7963CDFE203D8CB40033DE1A /* RegisterShopController.swift */,
+				794CC66B20480D0B00847DE3 /* topupScanController.swift */,
+				79666E532051947600552027 /* DetailTopupController.swift */,
+				79666E552052539900552027 /* StoreQRController.swift */,
+			);
+			path = Store;
 			sourceTree = "<group>";
 		};
 		795AC1092034EF42001FEF1E /* Setting */ = {
@@ -169,6 +196,28 @@
 		795AC10C20351B73001FEF1E /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				79666E582052B17300552027 /* Store */,
+				79666E572052B15E00552027 /* Users */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		7963CE00203ECE1F0033DE1A /* User */ = {
+			isa = PBXGroup;
+			children = (
+				79247BB01FCE56C2003BCC58 /* RegisterController.swift */,
+				79C58DF61FCAEA4400CB5C4B /* MainPageController.swift */,
+				79F18E8C20078C310091530A /* GenerateQRController.swift */,
+				7961C7902009505200AB93A6 /* PaymentController.swift */,
+				79A600AD2010943900607C66 /* PaymentDetailController.swift */,
+				795AC1042027D7FC001FEF1E /* ProfileController.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		79666E572052B15E00552027 /* Users */ = {
+			isa = PBXGroup;
+			children = (
 				795AC10D20351B96001FEF1E /* TableViewCell.swift */,
 				795AC10E20351B96001FEF1E /* TableViewCell.xib */,
 				7931A475203718F0001ABF48 /* PromotionViewCell.swift */,
@@ -178,22 +227,14 @@
 				797EC3B1203825AB0075E1C9 /* PaymentViewCell.swift */,
 				797EC3B2203825AB0075E1C9 /* PaymentViewCell.xib */,
 			);
-			path = TableViewCell;
+			path = Users;
 			sourceTree = "<group>";
 		};
-		7963CE00203ECE1F0033DE1A /* User */ = {
+		79666E582052B17300552027 /* Store */ = {
 			isa = PBXGroup;
 			children = (
-				79C58DF61FCAEA4400CB5C4B /* MainPageController.swift */,
-				79F18E8C20078C310091530A /* GenerateQRController.swift */,
-				7961C7902009505200AB93A6 /* PaymentController.swift */,
-				79A600AD2010943900607C66 /* PaymentDetailController.swift */,
-				7944DD342012BD55005BBA29 /* PromotionController.swift */,
-				795AC1042027D7FC001FEF1E /* ProfileController.swift */,
-				795AC1062034EA23001FEF1E /* HistoryTopupViewController.swift */,
-				7931A47920378A79001ABF48 /* HistoryRewardController.swift */,
 			);
-			path = User;
+			path = Store;
 			sourceTree = "<group>";
 		};
 		79C58DF31FCAD3CA00CB5C4B /* Storyboard */ = {
@@ -592,7 +633,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				79247BB11FCE56C2003BCC58 /* RegisterController.swift in Sources */,
+				794CC66C20480D0B00847DE3 /* topupScanController.swift in Sources */,
 				795AC11220361F22001FEF1E /* StoreMainController.swift in Sources */,
+				79666E542051947600552027 /* DetailTopupController.swift in Sources */,
 				79F18E8D20078C310091530A /* GenerateQRController.swift in Sources */,
 				7931A47A20378A79001ABF48 /* HistoryRewardController.swift in Sources */,
 				7982AA261FE2813700BD2078 /* HistoryPaymentController.swift in Sources */,
@@ -603,6 +646,7 @@
 				7944DD352012BD55005BBA29 /* PromotionController.swift in Sources */,
 				7961C7912009505200AB93A6 /* PaymentController.swift in Sources */,
 				795AC10F20351B96001FEF1E /* TableViewCell.swift in Sources */,
+				79666E562052539900552027 /* StoreQRController.swift in Sources */,
 				795AC10B2034EF85001FEF1E /* MaxLengthTextField.swift in Sources */,
 				79F0FA571FCAD08A00EDF1AE /* LoginPageController.swift in Sources */,
 				79A600AE2010943900607C66 /* PaymentDetailController.swift in Sources */,

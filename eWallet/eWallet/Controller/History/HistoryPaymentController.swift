@@ -21,16 +21,17 @@ class HistoryPayment: UIViewController, UITableViewDataSource, UITableViewDelega
 
     @IBOutlet weak var historyPaymentTable: UITableView!
     
+    var UserType : Int!
     var paymentno : String!
     var price : Float!
     var db = Firestore.firestore()
-    var WID : String = ""
+    var WalletID : String = ""
     var dateFormatter = DateFormatter()
     var array = [dataPayment]()
 
     override func viewDidLoad() {
-        print(self.WID)
-        db.collection("wallet").document(self.WID).collection("HistoryTopup").getDocuments { (snapshot, err) in
+        print(self.WalletID)
+        db.collection("Wallet").document(self.WalletID).collection("HistoryPayment").getDocuments { (snapshot, err) in
             if let err = err{
                 print(err.localizedDescription)
             }else{
@@ -38,7 +39,7 @@ class HistoryPayment: UIViewController, UITableViewDataSource, UITableViewDelega
                     print(document.documentID )
                     print(document.data()["AmountMoney"] as! Int)
                     print(document.data()["DateTopup"] as! Date)
-                    print(document.data()["WID"] as! String)
+                    print(document.data()["WalletID"] as! String)
                     //                    self.dateTopup.append(document.data()["DateTopup"] as Any)
                     self.dateFormatter.timeZone = NSTimeZone(abbreviation: "GMT+07:00")! as TimeZone
                     self.dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -62,9 +63,17 @@ class HistoryPayment: UIViewController, UITableViewDataSource, UITableViewDelega
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = Bundle.main.loadNibNamed("PaymentViewCell", owner: self, options: nil)?.first as! PaymentViewCell
-            cell.paymentNo.text = array[indexPath.row].paymentno
-            cell.paymentDate.text = array[indexPath.row].paymentdate
-            cell.paymentAmount.text = "+" + String(array[indexPath.row].paymentAmount) + "฿"
+            if UserType == 1{
+                cell.paymentNo.text = array[indexPath.row].paymentno
+                cell.paymentDate.text = array[indexPath.row].paymentdate
+                cell.paymentAmount.text = "-" + String(array[indexPath.row].paymentAmount) + "฿"
+                cell.paymentAmount.textColor = UIColor.red
+            } else if UserType == 2{
+                cell.paymentNo.text = array[indexPath.row].paymentno
+                cell.paymentDate.text = array[indexPath.row].paymentdate
+                cell.paymentAmount.text = "+" + String(array[indexPath.row].paymentAmount) + "฿"
+                cell.paymentAmount.textColor = UIColor.green
+            }
             return cell
         }
     

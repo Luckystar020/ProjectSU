@@ -18,21 +18,21 @@ class MainPageController: UIViewController,UINavigationControllerDelegate,UIImag
     @IBOutlet weak var fieldBalanceLabel: UILabel!
     
     var db  = Firestore.firestore()
-    var UID: String = ""
+    var UserType : Int = 0
+    var UserID: String = ""
     var Fullname : String = ""
-    var WalletID : String = ""
+    var WalletID_User : String = ""
     var Balance : Float = 0.0
     let picker = UIImagePickerController()
     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
-    
-   
+    let defult = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
         picker.delegate = self
-//        sideView.layer.shadowColor = UIColor.black.cgColor
-//        sideView.layer.shadowOpacity = 0.8
-//        sideView.layer.shadowOffset = CGSize(width: 5, height: 0)
+        //        sideView.layer.shadowColor = UIColor.black.cgColor
+        //        sideView.layer.shadowOpacity = 0.8
+        //        sideView.layer.shadowOffset = CGSize(width: 5, height: 0)
         
         if fieldNameLabel.text=="Name"&&fieldBalanceLabel.text=="Balance" {
             activityIndicator.center = self.view.center
@@ -46,8 +46,6 @@ class MainPageController: UIViewController,UINavigationControllerDelegate,UIImag
             
         }
         
-        
-        
         navigationController?.navigationBar.isHidden = false
         
         self.ProfileImage.layer.borderWidth = 2
@@ -56,67 +54,21 @@ class MainPageController: UIViewController,UINavigationControllerDelegate,UIImag
         self.ProfileImage.layer.cornerRadius = ProfileImage.frame.height/2
         self.ProfileImage.clipsToBounds = true
         
-        let timestamp = NSDate()
-        print("TimeStamp : \(timestamp)")
-        
-//        print(self.UID)
-        
+        //        print(self.UID)
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        callData()
-    }
-    
-    
-    
-    @IBAction func TopupBtn(_ sender: Any) {
-        if self.WalletID == ""{
-            return
-        } else{
-            let generateQR:GenerateQRController = self.storyboard!.instantiateViewController(withIdentifier: "GenerateQRController") as! GenerateQRController
-            generateQR.WalletID = self.WalletID
-            self.present(generateQR, animated: true, completion: nil)
-            GenerateQRController().WalletID = self.WalletID
-        }
-        
-    }
-    
-    @IBAction func rewardBTN(_ sender: Any) {
-        let historyReward:HistoryRewardController = self.storyboard!.instantiateViewController(withIdentifier: "HistoryReward") as! HistoryRewardController
-        
-        self.present(historyReward, animated: true, completion: nil)
-    }
-    
-    @IBAction func promoBTN(_ sender: Any) {
-        let promotionPage:PromotionController = self.storyboard!.instantiateViewController(withIdentifier: "Promotion") as! PromotionController
-        self.present(promotionPage, animated: true, completion: nil)
-    }
-    
-    @IBAction func paymentHistoryBTN(_ sender: Any) {
-        let historyPayment:HistoryPayment = self.storyboard!.instantiateViewController(withIdentifier: "HistoryPayment") as! HistoryPayment
-        historyPayment.WID = self.WalletID
-        self.present(historyPayment, animated: true, completion: nil)
-    }
-    
-    @IBAction func topupHistoryBTN(_ sender: Any) {
-        
-        let topupPayment:HistoryTopupViewController = self.storyboard?.instantiateViewController(withIdentifier: "HistoryTopup") as! HistoryTopupViewController
-        topupPayment.WID = self.WalletID
-        self.present(topupPayment, animated: true, completion: nil)
-    }
-    
-   
-    //Get data from Display name and Balance
-    func callData(){
-        let data = db.collection("user").document(self.UID)
-        let data2 = db.collection("wallet").whereField("UID", isEqualTo: self.UID)
-        
+        //Get data from Display name and Balance
         //Get data from collection user
-        data.getDocument { (document, error) in
-            if let document = document {
-                self.fieldNameLabel.text = "Welcome : \(document.data()!["Fullname"] as? String ?? "")"
-            }
-        }
+        db.collection("Users").document(self.UserID).addSnapshotListener({ (doc, err) in
+            self.fieldNameLabel.text = "Welcome : \(doc?.data()!["Fullname"] as? String ?? "Name")"
+        })
+        let data2 = db.collection("Wallet").whereField("UserID", isEqualTo: self.UserID)
+//                data.getDocument { (document, error) in
+//                    if let document = document {
+//                        self.fieldNameLabel.text = "Welcome : \(document.data()!["Fullname"] as? String ?? "")"
+//                    }
+//                }
         
         //Get data from collection wallet
         data2.getDocuments { (snapshot, error) in
@@ -124,9 +76,9 @@ class MainPageController: UIViewController,UINavigationControllerDelegate,UIImag
                 print(error)
             } else{
                 for document in (snapshot?.documents)!{
-                self.fieldBalanceLabel.text = "Balance : \(document.data()["Price"] as? Float ?? 0)  ฿"
-                self.WalletID = document.documentID
-                    print(self.WalletID)
+                    self.fieldBalanceLabel.text = "Balance : \(document.data()["Price"] as? Float ?? 0)  ฿"
+                    self.WalletID_User = document.documentID
+                    print(self.WalletID_User)
                     self.activityIndicator.stopAnimating()
                     UIApplication.shared.endIgnoringInteractionEvents()
                 }
@@ -134,12 +86,61 @@ class MainPageController: UIViewController,UINavigationControllerDelegate,UIImag
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "payScan"{
+            let destination = segue.destination as! PaymentController
+            destination.WalletID_User = self.WalletID_User
+            print("Change page with data : \(destination.WalletID_User)")
+        }
+    }
+    
+    @IBAction func scanClicked(_ sender: Any) {
+        self.performSegue(withIdentifier: "payScan", sender: self)
+    }
+    
+    @IBAction func TopupBtn(_ sender: Any) {
+        if self.WalletID_User == ""{
+            return
+        } else{
+            let generateQR:GenerateQRController = self.storyboard!.instantiateViewController(withIdentifier: "GenerateQRController") as! GenerateQRController
+            generateQR.WalletID_User = self.WalletID_User
+            self.present(generateQR, animated: true, completion: nil)
+//            GenerateQRController().WalletID = self.WalletID_User
+        }
+    }
+    //HisReward Page
+    @IBAction func rewardBTN(_ sender: Any) {
+        let historyReward:HistoryRewardController = self.storyboard!.instantiateViewController(withIdentifier: "HistoryReward") as! HistoryRewardController
+        historyReward.WalletID = self.WalletID_User
+        historyReward.UserType = self.UserType
+        self.present(historyReward, animated: true, completion: nil)
+    }
+    //Promotion Page
+    @IBAction func promoBTN(_ sender: Any) {
+        let promotionPage:PromotionController = self.storyboard!.instantiateViewController(withIdentifier: "Promotion") as! PromotionController
+        self.present(promotionPage, animated: true, completion: nil)
+    }
+    //HisPayment Page
+    @IBAction func paymentHistoryBTN(_ sender: Any) {
+        let historyPayment:HistoryPayment = self.storyboard!.instantiateViewController(withIdentifier: "HistoryPayment") as! HistoryPayment
+        historyPayment.WalletID = self.WalletID_User
+        historyPayment.UserType = self.UserType
+        self.present(historyPayment, animated: true, completion: nil)
+    }
+    //HisTopup Page
+    @IBAction func topupHistoryBTN(_ sender: Any) {
+        let topupPayment:HistoryTopupViewController = self.storyboard?.instantiateViewController(withIdentifier: "HistoryTopup") as! HistoryTopupViewController
+        topupPayment.WalletID = self.WalletID_User
+        topupPayment.UserType = self.UserType
+        self.present(topupPayment, animated: true, completion: nil)
+    }
+    
     /*BTN Logged out*/
     @IBAction func logoutTapped(_ sender: Any) {
         let Alert = UIAlertController(title: "Log out", message: "Are you sure log out?", preferredStyle: UIAlertControllerStyle.alert)
         Alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
         Alert.addAction(UIAlertAction(title: "Sure", style: UIAlertActionStyle.default, handler: { _ in
-           self.log_out()
+            self.log_out()
         }))
         self.present(Alert, animated: true, completion: nil)
     }
@@ -150,7 +151,6 @@ class MainPageController: UIViewController,UINavigationControllerDelegate,UIImag
         do{
             try Auth.auth().signOut()
             dismiss(animated: true, completion: nil)
-            
         } catch{
             print("Have Problem!")
         }
@@ -201,7 +201,7 @@ class MainPageController: UIViewController,UINavigationControllerDelegate,UIImag
     }
     func editProfile(){
         let profileController : ProfileController = self.storyboard?.instantiateViewController(withIdentifier: "ProfileController") as! ProfileController
-        profileController.UID = self.UID
+        profileController.UserID = self.UserID
         self.present(profileController, animated: true, completion: nil)
     }
     /** END function option change profile**/

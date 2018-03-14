@@ -14,7 +14,7 @@ class ProfileController: UIViewController {
     
     var db = Firestore.firestore()
 
-    var UID : String = ""
+    var UserID : String = ""
     @IBOutlet weak var Fullname: UITextField!
     @IBOutlet weak var Birthdate: UITextField!
     @IBOutlet weak var Phone: UITextField!
@@ -56,7 +56,7 @@ class ProfileController: UIViewController {
         Birthdate.inputView = datePicker
         Phone.inputAccessoryView = toolBar
         
-        self.db.collection("user").document(self.UID).addSnapshotListener { (snapshot, err) in
+        self.db.collection("Users").document(self.UserID).addSnapshotListener { (snapshot, err) in
             if let err = err{
                 print(err.localizedDescription)
             }else{
@@ -95,7 +95,7 @@ class ProfileController: UIViewController {
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
             if let fullname = self.Fullname.text,let birthdate = self.Birthdate.text, let phone = self.Phone.text{
-                self.db.collection("user").document(self.UID).updateData(["Fullname" : fullname,
+                self.db.collection("Users").document(self.UserID).updateData(["Fullname" : fullname,
                                                            "Birthdate" : birthdate,
                                                            "Phone" : phone])
             }

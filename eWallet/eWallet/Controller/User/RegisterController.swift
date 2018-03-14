@@ -162,7 +162,7 @@ class RegisterController: UIViewController {
     /*Send page to Main*/
     func gotoMainPage(){
         let mainpageController:MainPageController = self.storyboard!.instantiateViewController(withIdentifier: "MainPageController") as! MainPageController
-        mainpageController.UID = self.UserID
+        mainpageController.UserID = self.UserID
         self.present(mainpageController, animated: true, completion: nil)
     }
     /******************/

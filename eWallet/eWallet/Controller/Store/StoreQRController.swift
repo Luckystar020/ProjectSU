@@ -1,54 +1,49 @@
 //
-//  generateQRController.swift
+//  StoreQRController.swift
 //  eWallet
 //
-//  Created by chain'rong KST on 11/1/2561 BE.
+//  Created by Chai'nrong KST on 9/3/2561 BE.
 //  Copyright © 2561 chain'rong KST. All rights reserved.
 //
 
 import UIKit
 import FirebaseFirestore
 
-class GenerateQRController: UIViewController {
+class StoreQRController: UIViewController {
 
-    @IBOutlet weak var generateBTN: UIButton!
     @IBOutlet weak var imgQRCode: UIImageView!
     
     var qrcodeImage : CIImage!
     let mainpageController = MainPageController()
     var db = Firestore.firestore()
-    var WalletID_User : String = ""
+    var WalletID_Store : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-//        print("\(self.WalletID) Woohoo!")
-//        print("This UID is : \(self.UID)")
-    }
-   
-    @IBAction func closeButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-   //Generate QRCode and Change UIImage
-    @IBAction func changeUIImage(_ sender: Any) {
+        
+        //Generate QRCode and Change UIImage
         if qrcodeImage == nil {
             
-            let data = self.WalletID_User.data(using: String.Encoding.utf8, allowLossyConversion: false)
+            let data = self.WalletID_Store.data(using: String.Encoding.utf8, allowLossyConversion: false)
             let filter = CIFilter(name: "CIQRCodeGenerator")
             
             filter?.setValue(data, forKey: "inputMessage")
             filter?.setValue("Q", forKey: "inputCorrectionLevel")
             qrcodeImage = filter?.outputImage
             
-            print("Hi Girls! \(self.WalletID_User)" )
-            if self.WalletID_User == ""{
+            print("Hi Girls! \(self.WalletID_Store)" )
+            if self.WalletID_Store == ""{
                 return
             }
         }
         
         imgQRCode.image = UIImage.init(ciImage: qrcodeImage)
         displayQRCodeImage()
+        
+    }
+    
+    @IBAction func closeButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     // Fix Scale QRCode Equals UIImage
@@ -63,10 +58,4 @@ class GenerateQRController: UIViewController {
         
         
     }
-    
 }
-        
-
-    
-    
-

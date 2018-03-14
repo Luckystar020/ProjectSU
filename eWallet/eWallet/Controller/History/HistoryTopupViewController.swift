@@ -17,8 +17,9 @@ struct cellData {
 
 class HistoryTopupViewController:  UIViewController,UITableViewDataSource, UITableViewDelegate{
     
+    var UserType : Int!
     var db = Firestore.firestore()
-    var WID : String = ""
+    var WalletID : String = ""
     var countarr = [cellData]()
     let dateFormatter = DateFormatter()
 
@@ -34,7 +35,7 @@ class HistoryTopupViewController:  UIViewController,UITableViewDataSource, UITab
 //        countarr = [cellData(Topupno: "123456", Date: stringDate, AmountMoney: 50),cellData(Topupno: "123456", Date: stringDate, AmountMoney: 50)]
         
         
-        db.collection("wallet").document(self.WID).collection("HistoryTopup").getDocuments { (snapshot, err) in
+        db.collection("Wallet").document(self.WalletID).collection("HistoryTopup").getDocuments { (snapshot, err) in
             if let err = err{
                 print(err.localizedDescription)
             }else{
@@ -42,7 +43,7 @@ class HistoryTopupViewController:  UIViewController,UITableViewDataSource, UITab
                     print(document.documentID )
                     print(document.data()["AmountMoney"] as! Int)
                     print(document.data()["DateTopup"] as! Date)
-                    print(document.data()["WID"] as! String)
+                    print(document.data()["WalletID"] as! String)
                     //                    self.dateTopup.append(document.data()["DateTopup"] as Any)
                     self.dateFormatter.timeZone = NSTimeZone(abbreviation: "GMT+07:00")! as TimeZone
                     self.dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -69,10 +70,17 @@ class HistoryTopupViewController:  UIViewController,UITableViewDataSource, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("TableViewCell", owner: self, options: nil)?.first as! TableViewCell
-        cell.Topupno.text = countarr[indexPath.row].Topupno
-        cell.Date.text = countarr[indexPath.row].Date
-        cell.AmountMoney.text = "+" + String(countarr[indexPath.row].AmountMoney) + "฿"
-        
+        if UserType == 1{
+            cell.Topupno.text = countarr[indexPath.row].Topupno
+            cell.Date.text = countarr[indexPath.row].Date
+            cell.AmountMoney.text = "+" + String(countarr[indexPath.row].AmountMoney) + "฿"
+            cell.AmountMoney.textColor = UIColor.green
+        }else if UserType == 2{
+            cell.Topupno.text = countarr[indexPath.row].Topupno
+            cell.Date.text = countarr[indexPath.row].Date
+            cell.AmountMoney.text = "" + String(countarr[indexPath.row].AmountMoney) + "฿"
+            cell.AmountMoney.textColor = UIColor.blue
+        }
         return cell
 
     }

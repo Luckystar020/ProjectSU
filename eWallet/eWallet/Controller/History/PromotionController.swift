@@ -17,6 +17,7 @@ struct promoData {
 
 class PromotionController:  UIViewController,UITableViewDataSource, UITableViewDelegate{
     
+    var UserType : Int!
     var db = Firestore.firestore()
     var WID : String = ""
     var countarr = [promoData]()

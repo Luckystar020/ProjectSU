@@ -15,7 +15,6 @@ class LoginPageController: UIViewController{
 //    let db = Firestore.firestore()
     var UserID : String = ""
     var StoreID : String = ""
-    var TypeUser : Int = 0
     @IBOutlet weak var emailTextFeild: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
@@ -56,18 +55,20 @@ class LoginPageController: UIViewController{
     
     func whenLogin(UserID : String){
         let db = Firestore.firestore()
-        db.collection("Users").document(self.UserID).getDocument { (doc, err) in
+        db.collection("Users").document(UserID).getDocument { (doc, err) in
             if let err = err{
                 print(err.localizedDescription)
             }else{
-                self.TypeUser = doc?.data()!["UserType"] as! Int
-                if self.TypeUser == 1{
+                let TypeUser = doc?.data()!["Usertype"] as! Int
+                if TypeUser == 1{
                     let mainpageController:MainPageController = self.storyboard!.instantiateViewController(withIdentifier: "MainPageController") as! MainPageController
-                    mainpageController.UID = self.UserID
+                    mainpageController.UserID = UserID
+                    mainpageController.UserType = TypeUser
                     self.present(mainpageController, animated: true, completion: nil)
-                } else if self.TypeUser == 2{
+                } else if TypeUser == 2{
                     let storeMain:StoreMainController = self.storyboard!.instantiateViewController(withIdentifier: "StoreMainController") as! StoreMainController
-                    storeMain.UserID = self.UserID
+                    storeMain.UserID = UserID
+                    storeMain.UserType = TypeUser
                     self.present(storeMain, animated: true, completion: nil)
                 }
             }
