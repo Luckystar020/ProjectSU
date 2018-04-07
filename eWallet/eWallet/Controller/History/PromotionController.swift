@@ -10,7 +10,7 @@ import UIKit
 import FirebaseFirestore
 
 struct promoData {
-    let imgPromo : String!
+    let imgPromo : UIImage!
     let name : String!
     let detail: String!
 }
@@ -29,11 +29,10 @@ class PromotionController:  UIViewController,UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         // Do any additional setup after loading the view.
         countarr = [
-            promoData(imgPromo: "รูป0",name: "Promotion", detail: "Details"),
-                promoData(imgPromo: "รูป1",name: "Promotion", detail: "Details"),
-                promoData(imgPromo: "รูป2",name: "Promotion", detail: "Details"),
-                promoData(imgPromo: "รูป3",name: "Promotion", detail: "Details")]
-        
+            promoData(imgPromo: UIImage(named: "javier-garcia-186629"),name: "Promotion", detail: "Details"),
+                promoData(imgPromo: UIImage(named: "javier-garcia-186629"),name: "Promotion", detail: "Details"),
+                promoData(imgPromo: UIImage(named: "javier-garcia-186629"),name: "Promotion", detail: "Details"),
+                promoData(imgPromo: UIImage(named: "javier-garcia-186629"),name: "Promotion", detail: "Details")]
         
         self.tableView.reloadData()
         self.tableView.delegate = self
@@ -47,7 +46,7 @@ class PromotionController:  UIViewController,UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("PromotionViewCell", owner: self, options: nil)?.first as! PromotionViewCell
-//        cell.proImg.image = countarr[indexPath.row].imgPromo as? UIImage
+        cell.proImg.image = countarr[indexPath.row].imgPromo
         cell.nameLabel.text = countarr[indexPath.row].name
         cell.detailsLabel.text = countarr[indexPath.row].detail
         return cell
@@ -55,7 +54,7 @@ class PromotionController:  UIViewController,UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 250
     }
     
     @IBAction func backBTN(_ sender: Any) {

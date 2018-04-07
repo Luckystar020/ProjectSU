@@ -15,6 +15,7 @@ class LoginPageController: UIViewController{
 //    let db = Firestore.firestore()
     var UserID : String = ""
     var StoreID : String = ""
+    var status : Bool = false
     @IBOutlet weak var emailTextFeild: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
@@ -38,6 +39,7 @@ class LoginPageController: UIViewController{
     }
     
     @IBAction func loginTapped(_ sender: Any) {
+    
         if let email = emailTextFeild.text?.lowercased(), let password = passwordTextField.text{
             //Authen signIn with email
             Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
@@ -55,6 +57,17 @@ class LoginPageController: UIViewController{
     
     func whenLogin(UserID : String){
         let db = Firestore.firestore()
+        
+        db.collection("Store").whereField("UserID", isEqualTo: UserID).addSnapshotListener({ (query, err) in
+            if let err = err{
+                print(err.localizedDescription)
+            }else{
+                for doc in (query?.documents)!{
+                    self.status = (doc.data()["StatusAccept"] as? Bool)!
+                }
+            }
+    })
+        
         db.collection("Users").document(UserID).getDocument { (doc, err) in
             if let err = err{
                 print(err.localizedDescription)
@@ -64,12 +77,33 @@ class LoginPageController: UIViewController{
                     let mainpageController:MainPageController = self.storyboard!.instantiateViewController(withIdentifier: "MainPageController") as! MainPageController
                     mainpageController.UserID = UserID
                     mainpageController.UserType = TypeUser
-                    self.present(mainpageController, animated: true, completion: nil)
+                    self.present(mainpageController, animated: true, completion: {
+                        self.emailTextFeild.text = ""
+                        self.passwordTextField.text = ""
+                    })
                 } else if TypeUser == 2{
-                    let storeMain:StoreMainController = self.storyboard!.instantiateViewController(withIdentifier: "StoreMainController") as! StoreMainController
-                    storeMain.UserID = UserID
-                    storeMain.UserType = TypeUser
-                    self.present(storeMain, animated: true, completion: nil)
+                    if self.status == true{
+                        let storeMain:StoreMainController = self.storyboard!.instantiateViewController(withIdentifier: "StoreMainController") as! StoreMainController
+                        storeMain.UserID = UserID
+                        storeMain.UserType = TypeUser
+                        self.present(storeMain, animated: true, completion: {
+                            self.emailTextFeild.text = ""
+                            self.passwordTextField.text = ""
+                        })
+                    }else{
+                        let alert = UIAlertController(title: "Your're store account not approve.", message: "Please wait for accepted.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Done", style: .cancel, handler: nil))
+//                        self.present(alert, animated: true, completion: nil)
+                        self.present(alert, animated: true, completion: {
+                            self.emailTextFeild.text = ""
+                            self.passwordTextField.text = ""
+                        })
+                        
+                    }
+//                    let storeMain:StoreMainController = self.storyboard!.instantiateViewController(withIdentifier: "StoreMainController") as! StoreMainController
+//                    storeMain.UserID = UserID
+//                    storeMain.UserType = TypeUser
+//                    self.present(storeMain, animated: true, completion: nil)
                 }
             }
         }

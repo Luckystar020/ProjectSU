@@ -22,7 +22,7 @@ class ProfileController: UIViewController {
     @IBOutlet weak var versionLabel: UILabel!
     let datePicker = UIDatePicker()
     let dateFormatter = DateFormatter()
-    var r = "0.1.4"
+    var r = "Demo"
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -125,7 +125,8 @@ class RegisterShopController: UIViewController {
                                           "Personal" : PersonalID,
                                           "Email" : Email,
                                           "StoreID" : self.StoreID,
-                                          "Usertype": 2]
+                                          "Usertype": 2,
+                                          "Status": "Available"]
                                     , completion: { (Error) in
                                         if let firestoreErr = Error{
                                             print(firestoreErr.localizedDescription)

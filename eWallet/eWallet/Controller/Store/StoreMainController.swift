@@ -17,12 +17,13 @@ class StoreMainController: UIViewController {
     var UserID : String = ""
     var StoreID : String = ""
     var UserType :Int = 0
+    var status :Bool = false
     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
     @IBOutlet weak var storeNameField: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(StoreID)
+        print("Store\(StoreID)")
         // Do any additional setup after loading the view.
         
         let wallet = db.collection("Wallet").whereField("UserID", isEqualTo: UserID)
@@ -49,6 +50,7 @@ class StoreMainController: UIViewController {
         print(WalletID_Store)
     }
     
+    
     override func viewDidAppear(_ animated: Bool) {
         
 //        self.Usertype = db.collection("Users").document(UserID).value(forKey: "Usertype") as! Int
@@ -59,6 +61,7 @@ class StoreMainController: UIViewController {
             }else{
                 for document in (Query?.documents)!{
                     self.storeNameField.text = document.data()["StoreName"] as? String
+                    self.status = (document.data()["StatusAccept"] as? Bool)!
                 }
             }
         })
@@ -75,13 +78,23 @@ class StoreMainController: UIViewController {
     }
     
     @IBAction func scanClicked(_ sender: Any) {
-       self.performSegue(withIdentifier: "topupScan", sender: self)
+         self.performSegue(withIdentifier: "topupScan", sender: self)
+        
     }
     
     @IBAction func StoreQR(_ sender: Any) {
         if self.WalletID_Store == ""{
             return
         } else{
+//                if status == true{
+//                    let storeQR:StoreQRController = self.storyboard!.instantiateViewController(withIdentifier: "StoreQRController") as! StoreQRController
+//                    storeQR.WalletID_Store = self.WalletID_Store
+//                    self.present(storeQR, animated: true, completion: nil)
+//                }else{
+//                    let alert = UIAlertController(title: "Your're store account not approve.", message: "Please wait for accepted.", preferredStyle: .alert)
+//                    alert.addAction(UIAlertAction(title: "Done", style: .cancel, handler: nil))
+//                    self.present(alert, animated: true, completion: nil)
+//                }
             let storeQR:StoreQRController = self.storyboard!.instantiateViewController(withIdentifier: "StoreQRController") as! StoreQRController
             storeQR.WalletID_Store = self.WalletID_Store
             self.present(storeQR, animated: true, completion: nil)
@@ -122,6 +135,25 @@ class StoreMainController: UIViewController {
         Alert.addAction(UIAlertAction(title: "Sure", style: UIAlertActionStyle.default, handler: { _ in
             self.log_out()
         }))
+        self.present(Alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func menuBTN(_ sender: Any) {
+        let Alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
+        Alert.addAction(UIAlertAction(title: "Detail Store", style: .default, handler: { _ in
+           print("Detail Store")
+        }))
+        
+        Alert.addAction(UIAlertAction(title: "Site Store", style: .default, handler: { _ in
+            print("Site Store")
+        }))
+        
+//        Alert.addAction(UIAlertAction(title: "Edit Profile", style: .default, handler: { _ in
+//            print("Edit Profile")
+//
+//        }))
+        Alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+        
         self.present(Alert, animated: true, completion: nil)
     }
     

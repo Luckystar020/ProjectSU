@@ -35,6 +35,7 @@ class HistoryTopupViewController:  UIViewController,UITableViewDataSource, UITab
 //        countarr = [cellData(Topupno: "123456", Date: stringDate, AmountMoney: 50),cellData(Topupno: "123456", Date: stringDate, AmountMoney: 50)]
         
         
+        
         db.collection("Wallet").document(self.WalletID).collection("HistoryTopup").getDocuments { (snapshot, err) in
             if let err = err{
                 print(err.localizedDescription)
@@ -63,6 +64,8 @@ class HistoryTopupViewController:  UIViewController,UITableViewDataSource, UITab
     
         
     }
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return countarr.count

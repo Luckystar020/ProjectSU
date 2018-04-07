@@ -105,7 +105,8 @@ class RegisterController: UIViewController {
                                       "Personal" : personal,
                                       "Email" : email,
                                       "StoreID" : self.StoreID,
-                                      "Usertype": 1],
+                                      "Usertype": 1,
+                                      "Status":"Available"],
                                      completion: { (err) in
                                         //Have some problem
                                         if let err = err {

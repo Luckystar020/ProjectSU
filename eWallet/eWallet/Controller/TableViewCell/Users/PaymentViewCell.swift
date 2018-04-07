@@ -13,6 +13,7 @@ class PaymentViewCell: TableViewCell {
     @IBOutlet weak var paymentNo: UILabel!
     @IBOutlet weak var paymentDate: UILabel!
     @IBOutlet weak var paymentAmount: UILabel!
+    @IBOutlet weak var statusRefund: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

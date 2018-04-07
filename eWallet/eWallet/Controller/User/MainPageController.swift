@@ -64,26 +64,48 @@ class MainPageController: UIViewController,UINavigationControllerDelegate,UIImag
             self.fieldNameLabel.text = "Welcome : \(doc?.data()!["Fullname"] as? String ?? "Name")"
         })
         let data2 = db.collection("Wallet").whereField("UserID", isEqualTo: self.UserID)
+        
 //                data.getDocument { (document, error) in
 //                    if let document = document {
 //                        self.fieldNameLabel.text = "Welcome : \(document.data()!["Fullname"] as? String ?? "")"
 //                    }
 //                }
-        
-        //Get data from collection wallet
-        data2.getDocuments { (snapshot, error) in
-            if let error = error{
-                print(error)
-            } else{
-                for document in (snapshot?.documents)!{
-                    self.fieldBalanceLabel.text = "Balance : \(document.data()["Price"] as? Float ?? 0)  ฿"
-                    self.WalletID_User = document.documentID
-                    print(self.WalletID_User)
+        data2.addSnapshotListener { (query, error) in
+            guard let snapshot = query else{
+                print("Error fetching snapshot: \(error!)")
+                return
+            }
+            snapshot.documentChanges.forEach({ diff in
+                if (diff.type == .added){
+                    print("New Money: \(diff.document.data()["Price"] ?? "")")
+                    self.fieldBalanceLabel.text = "Balance : \(diff.document.data()["Price"] as? Float ?? 0) ฿"
+                    self.WalletID_User = diff.document.documentID
                     self.activityIndicator.stopAnimating()
                     UIApplication.shared.endIgnoringInteractionEvents()
                 }
-            }
+                if (diff.type == .modified){
+                    print("Modified city: \(diff.document.data()["Price"] ?? "")")
+                    self.fieldBalanceLabel.text = "Balance : \(diff.document.data()["Price"] as? Float ?? 0) ฿"
+                    self.WalletID_User = diff.document.documentID
+                    self.activityIndicator.stopAnimating()
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                }
+            })
         }
+        //Get data from collection wallet
+//        data2.getDocuments { (snapshot, error) in
+//            if let error = error{
+//                print(error)
+//            } else{
+//                for document in (snapshot?.documents)!{
+//                    self.fieldBalanceLabel.text = "Balance : \(document.data()["Price"] as? Float ?? 0)  ฿"
+//                    self.WalletID_User = document.documentID
+//                    print(self.WalletID_User)
+//                    self.activityIndicator.stopAnimating()
+//                    UIApplication.shared.endIgnoringInteractionEvents()
+//                }
+//            }
+//        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
